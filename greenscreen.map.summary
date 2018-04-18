@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Wed Mar 28 15:41:22 2018
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+Revision Name : greenscreen
+Top-level Entity Name : greenscreen
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 790
+Total pins : 151
+Total virtual pins : 0
+Total block memory bits : 256
+Total DSP Blocks : 0
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 1
+Total DLLs : 0
