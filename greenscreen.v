@@ -73,47 +73,70 @@ module greenscreen(
 	inout 		          		MTL2MTL_TOUCH_I2C_SDA,
 	input 		          		MTL2MTL_TOUCH_INT_n,
 	output		          		MTL2MTL_VSD
-);
+	);
 
 
-
-//=======================================================
-//  REG/WIRE declarations
-//=======================================================
 
 	wire clock;
 	PLL33 pll(CLOCK_50,!KEY[0],clock);
-	
-
-//=======================================================
-//  Structural coding
-//=======================================================
 
 
-	display1 display(CLOCK_50,clock,!KEY[0], MTL2MTL_R, MTL2MTL_G, MTL2MTL_B, MTL2MTL_HSD, MTL2MTL_VSD, MTL2MTL_DCLK,
-	MTL2MTL_TOUCH_INT_n,MTL2MTL_TOUCH_I2C_SCL,MTL2MTL_TOUCH_I2C_SDA);
+	top_level camera(.clk_50(CLOCK_50),
+									.btn_RESET(!KEY[0]),
+									.slide_sw_resend_reg_values(),
+									.slide_sw_NORMAL_OR_EDGEDETECT(),
+									.vga_hsync(),
+									.vga_vsync(),
+									.vga_r(),
+									.vga_b(),
+									.vga_g(),
+									.vga_blank_N(),
+									.vga_sync_N(),
+									.vga_CLK(),
+									.ov7670_pclk(),
+									.ov7670_xclk(),
+									.ov7670_vsync(),
+									.ov7670_href(),
+									.ov7670_data(),
+									.ov7670_sioc(),
+									.ov7670_siod(),
+									.ov7670_pwdn(),
+									.ov7670_reset());
+
+	display1 display(.CLOCK50(CLOCK_50),
+									.clock(clock),
+									.reset(!KEY[0]),
+									.VGA_R(MTL2MTL_R),
+									.VGA_G(MTL2MTL_G),
+									.VGA_B(MTL2MTL_B),
+									.VGA_HS(MTL2MTL_HSD),
+									.VGA_VS(MTL2MTL_VSD),
+									.VGA_CLOCK(MTL2MTL_DCLK),
+									.MTL2MTL_TOUCH_INT_n(MTL2MTL_TOUCH_INT_n),
+									.MTL2MTL_TOUCH_I2C_SCL(MTL2MTL_TOUCH_I2C_SCL),
+									.MTL2MTL_TOUCH_I2C_SDA(MTL2MTL_TOUCH_I2C_SDA));
 
 endmodule
 
 module vga_controller(clock, reset, display_col, display_row, visible, hsync, vsync);
 
-	// 72 Hz 800 x 600 VGA - 50MHz clock 
+	// 72 Hz 800 x 600 VGA - 50MHz clock
 
 	parameter HOR_FIELD = 779;
-	parameter HOR_STR_SYNC = 1009; 
+	parameter HOR_STR_SYNC = 1009;
 	parameter HOR_STP_SYNC = 1039;
-	parameter HOR_TOTAL = 1055;  
-	parameter VER_FIELD = 479; 
+	parameter HOR_TOTAL = 1055;
+	parameter VER_FIELD = 479;
 	parameter VER_STR_SYNC = 501;
-	parameter VER_STP_SYNC = 514; 
+	parameter VER_STP_SYNC = 514;
 	parameter VER_TOTAL= 524;
 
-	 
+
 	input clock;
 	input reset;
 
-	output reg [11:0] display_col; 
-	output reg [10:0] display_row; 
+	output reg [11:0] display_col;
+	output reg [10:0] display_row;
 	output reg visible;
 	output reg hsync, vsync;
 
@@ -128,13 +151,13 @@ module vga_controller(clock, reset, display_col, display_row, visible, hsync, vs
 				hsync = 1;
 				vsync = 1;
 				end
-			else begin 
+			else begin
 				display_col <= display_col + 1;
 				if(display_col == HOR_TOTAL) begin
 					line_start_pulse <= 1;
 					display_col <= 0;
 					end
-				
+
 				if(line_start_pulse == 1) begin
 					line_start_pulse <= 0;
 					display_row <= display_row + 1;
@@ -148,7 +171,7 @@ module vga_controller(clock, reset, display_col, display_row, visible, hsync, vs
 				if(display_col == HOR_STP_SYNC) begin
 					hsync <= 1;
 					end
-				
+
 				if(display_row == VER_TOTAL) begin
 					display_row <= 0;
 					end
@@ -164,111 +187,123 @@ module vga_controller(clock, reset, display_col, display_row, visible, hsync, vs
 				if((display_row < VER_FIELD) && (display_col < HOR_FIELD)) begin
 					visible <= 1;
 					end
-				
-				
+
+
 
 				end
-				
-			
-			
+
+
+
 		end
-		
+
 endmodule
 
 
-module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B, VGA_HS, VGA_VS, VGA_CLOCK, VGA_SYNC_N, VGA_BLANK_N ,MTL2MTL_TOUCH_INT_n,MTL2MTL_TOUCH_I2C_SCL,MTL2MTL_TOUCH_I2C_SDA);
+module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
+								VGA_HS, VGA_VS, VGA_CLOCK, MTL2MTL_TOUCH_INT_n,
+								MTL2MTL_TOUCH_I2C_SCL,MTL2MTL_TOUCH_I2C_SDA);
 
-input CLOCK50;
-input clock;
-input reset;
+	input CLOCK50;
+	input clock;
+	input reset;
 
-input MTL2MTL_TOUCH_INT_n;
+	input MTL2MTL_TOUCH_INT_n;
 
-output MTL2MTL_TOUCH_I2C_SCL;
-inout MTL2MTL_TOUCH_I2C_SDA;
+	output MTL2MTL_TOUCH_I2C_SCL;
+	inout MTL2MTL_TOUCH_I2C_SDA;
 
-output [7:0] VGA_R, VGA_G, VGA_B; 
+	output [7:0] VGA_R, VGA_G, VGA_B;
 
-output VGA_CLOCK, VGA_SYNC_N;
-output reg VGA_HS, VGA_VS, VGA_BLANK_N;
+	output VGA_CLOCK;
+	output reg VGA_HS, VGA_VS;
 
-wire [7:0] VGA_R, VGA_G, VGA_B; 
-wire touch_ready;
-reg [7:0] red, green, blue;
+	wire [7:0] VGA_R, VGA_G, VGA_B;
+	wire touch_ready;
+	reg [7:0] red, green, blue;
 
-wire [9:0] xco;
-wire [3:0] touch_count;
-wire [8:0] yco;
-wire [7:0] gesture;
+	wire [9:0] xco;
+	wire [3:0] touch_count;
+	wire [8:0] yco;
+	wire [7:0] gesture;
 
-assign VGA_R = red; 
-assign VGA_G = green; 
-assign VGA_B = blue;
-// add one additional clock cycle to compensate for videoDAC delay 
-always @(posedge clock) VGA_HS = hsync;
-always @(posedge clock) VGA_VS = vsync;
-always @(posedge clock) VGA_BLANK_N = hsync & vsync;
+	assign VGA_R = red;
+	assign VGA_G = green;
+	assign VGA_B = blue;
+	// add one additional clock cycle to compensate for videoDAC delay
+	always @(posedge clock) VGA_HS = hsync;
+	always @(posedge clock) VGA_VS = vsync;
 
-assign VGA_CLOCK = clock; assign VGA_SYNC_N = 1'b0;
+	assign VGA_CLOCK = clock;
 
-wire hsync, vsync;
-wire visible;
+	wire hsync, vsync;
+	wire visible;
 
-reg [9:0] vierkantjeX;
-reg [8:0] vierkantjeY;
-
-
-
-i2c_touch_config touch(.iCLK(CLOCK50),.iRSTN(reset),.INT_n(MTL2MTL_TOUCH_INT_n),
-							  .I2C_SCLK(MTL2MTL_TOUCH_I2C_SCL),.I2C_SDAT(MTL2MTL_TOUCH_I2C_SDA),
-							  .oREADY(touch_ready),.oREG_X1(xco),.oREG_Y1(yco),.oREG_TOUCH_COUNT(touch_count),
-							  .oREG_GESTURE(gesture));
-							  
-
-
-vga_controller vga(clock, reset, display_col, display_row, visible, hsync, vsync);
-
-
-always @(posedge CLOCK50)begin
-	if(reset) begin
-		vierkantjeX = 90;
-		vierkantjeY = 90;
-	end else begin
-		if(touch_ready) begin
-			vierkantjeX = xco;
-			vierkantjeY = yco;
-		end
-	end
-end
+	reg [9:0] vierkantjeX;
+	reg [8:0] vierkantjeY;
 
 
 
-always @(posedge clock)  begin
-	if (reset) begin
-		red = 0; green = 0; blue = 0;
-	end else begin
-		if (visible) begin
-			if(vierkantjeY -20 < display_col && display_col < vierkantjeY + 20) begin
-				if(vierkantjeX - 20 < display_row && display_row < vierkantjeX + 20) begin
-					red = 255; blue = 0; green = 0;
-				end
-				else begin
-					red = 255; blue = 255; green = 0;
-				end
-			end
-			
-			else begin
-				red = 255; blue = 255; green = 0;
-			end
+	i2c_touch_config touch(.iCLK(CLOCK50),
+												.iRSTN(reset),
+												.INT_n(MTL2MTL_TOUCH_INT_n),
+								  			.I2C_SCLK(MTL2MTL_TOUCH_I2C_SCL),
+												.I2C_SDAT(MTL2MTL_TOUCH_I2C_SDA),
+											  .oREADY(touch_ready),
+												.oREG_X1(xco),
+												.oREG_Y1(yco),
+												.oREG_TOUCH_COUNT(touch_count),
+											  .oREG_GESTURE(gesture));
+
+
+
+	vga_controller vga(clock, reset, display_col, display_row, visible, hsync, vsync);
+
+
+	always @(posedge CLOCK50)begin
+		if(reset) begin
+			vierkantjeX = 90;
+			vierkantjeY = 90;
 		end else begin
-			red = 0; green = 0; blue = 0;
-		end 
+			if(touch_ready) begin
+				vierkantjeX = xco;
+				vierkantjeY = yco;
+
+			end
+		end
 	end
-end
-			
+
+
+
+	always @(posedge clock)  begin
+		if (reset) begin
+			red = 0; green = 0; blue = 0;
+		end else begin
+			if (visible) begin
+				if(vierkantjeY -20 < display_col && display_col < vierkantjeY + 20) begin
+					if(vierkantjeX - 20 < display_row && display_row < vierkantjeX + 20) begin
+						red = 255; blue = 0; green = 0;
+					end
+					else begin
+						if(touch_ready) begin
+							red = 100; blue = 10; green = 100;
+						end else begin
+							red = 255; blue = 25; green = 0;
+						end
+					end
+				end
+
+				else begin
+					if(touch_ready)begin
+						red =100; blue = 10; green = 100;
+					end else begin
+					red = 255; blue = 25; green = 0;
+					end
+				end
+			end else begin
+				red = 0; green = 0; blue = 0;
+			end
+		end
+	end
+
 
 endmodule
-
-
-
-
