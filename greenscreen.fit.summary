@@ -1,20 +1,20 @@
-Fitter Status : Successful - Wed Apr 18 15:48:42 2018
+Fitter Status : Successful - Wed May 02 16:44:55 2018
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : greenscreen
 Top-level Entity Name : greenscreen
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 1,035 / 32,070 ( 3 % )
-Total registers : 2369
-Total pins : 151 / 457 ( 33 % )
+Logic utilization (in ALMs) : 723 / 32,070 ( 2 % )
+Total registers : 2031
+Total pins : 194 / 457 ( 42 % )
 Total virtual pins : 0
-Total block memory bits : 15,744 / 4,065,280 ( < 1 % )
-Total RAM Blocks : 4 / 397 ( 1 % )
-Total DSP Blocks : 5 / 87 ( 6 % )
+Total block memory bits : 142,720 / 4,065,280 ( 4 % )
+Total RAM Blocks : 20 / 397 ( 5 % )
+Total DSP Blocks : 0 / 87 ( 0 % )
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0
 Total HSSI PMA TX Serializers : 0
-Total PLLs : 1 / 6 ( 17 % )
+Total PLLs : 2 / 6 ( 33 % )
 Total DLLs : 0 / 4 ( 0 % )

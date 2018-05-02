@@ -42,26 +42,26 @@ module greenscreen(
 	input 		          		TD_VS,
 
 	//////////// VGA //////////
-	output		     [7:0]		VGA_B,
-	output		          		VGA_BLANK_N,
-	output		          		VGA_CLK,
-	output		     [7:0]		VGA_G,
-	output		          		VGA_HS,
-	output		     [7:0]		VGA_R,
+	output		      [7:0]		VGA_B,
+	output		           		VGA_BLANK_N,
+	output		           		VGA_CLK,
+	output 		     [7:0]		VGA_G,
+	output		           		VGA_HS,
+	output		      [7:0]		VGA_R,
 	output		          		VGA_SYNC_N,
 	output		          		VGA_VS,
 
 	//////////// GPIO_0, GPIO_0 connect to D5M - 5M Pixel Camera //////////
-	input 		    [11:0]		D5M_D,
-	input 		          		D5M_FVAL,
-	input 		          		D5M_LVAL,
-	input 		          		D5M_PIXCLK,
-	output		          		D5M_RESET_N,
-	output		          		D5M_SCLK,
-	inout 		          		D5M_SDATA,
-	input 		          		D5M_STROBE,
-	output		          		D5M_TRIGGER,
-	output		          		D5M_XCLKIN,
+	input 		     [7:0]		ov7670_data,
+	input 		          		ov7670_pclk,
+	input 		          		ov7670_vsync,
+	input 		          		ov7670_href,
+	output		          		ov7670_xclk,
+	output		          		ov7670_sioc,
+	inout 		          		ov7670_siod,
+	output		          		ov7670_pwdn,
+	output		          		ov7670_reset,
+
 
 	//////////// GPIO_1, GPIO_1 connect to MTL - Multi-Touch LCD Panel //////////
 	output		     [7:0]		MTL2MTL_B,
@@ -72,64 +72,431 @@ module greenscreen(
 	output		          		MTL2MTL_TOUCH_I2C_SCL,
 	inout 		          		MTL2MTL_TOUCH_I2C_SDA,
 	input 		          		MTL2MTL_TOUCH_INT_n,
-	output		          		MTL2MTL_VSD
+	output		          		MTL2MTL_VSD,
+
+	///////// AUD /////////
+  input              AUD_ADCDAT,
+  inout              AUD_ADCLRCK,
+  inout              AUD_BCLK,
+  output             AUD_DACDAT,
+  inout              AUD_DACLRCK,
+  output             AUD_XCK,
+
+	///////// HEX0 /////////
+  output      [6:0]  HEX0,
+
+  ///////// HEX1 /////////
+  output      [6:0]  HEX1,
+
+  ///////// HEX2 /////////
+  output      [6:0]  HEX2,
+
+  ///////// HEX3 /////////
+  output      [6:0]  HEX3,
+
+  ///////// HEX4 /////////
+  output      [6:0]  HEX4,
+
+  ///////// HEX5 /////////
+  output      [6:0]  HEX5
 	);
 
-
+	wire [7:0] red_cam, green_cam, blue_cam;
 
 	wire clock;
-	PLL33 pll(CLOCK_50,!KEY[0],clock);
+
+	PLL100 pll(CLOCK_50, !KEY[0], clock);
 
 
-	top_level camera(.clk_50(CLOCK_50),
+	digital_cam_impl4 camera(.clk_50(CLOCK_50),
+									.slide_sw_resend_reg_values(SW[7]),
+									.slide_sw_NORMAL_OR_EDGEDETECT(SW[6]),
 									.btn_RESET(!KEY[0]),
-									.slide_sw_resend_reg_values(),
-									.slide_sw_NORMAL_OR_EDGEDETECT(),
-									.vga_hsync(),
-									.vga_vsync(),
-									.vga_r(),
-									.vga_b(),
-									.vga_g(),
-									.vga_blank_N(),
-									.vga_sync_N(),
-									.vga_CLK(),
-									.ov7670_pclk(),
-									.ov7670_xclk(),
-									.ov7670_vsync(),
-									.ov7670_href(),
-									.ov7670_data(),
-									.ov7670_sioc(),
-									.ov7670_siod(),
-									.ov7670_pwdn(),
-									.ov7670_reset());
+									.vga_r(red_cam),
+									.vga_b(blue_cam),
+									.vga_g(green_cam),
 
-	display1 display(.CLOCK50(CLOCK_50),
+									.ov7670_pclk(ov7670_pclk),
+									.ov7670_xclk(ov7670_xclk),
+									.ov7670_vsync(ov7670_vsync),
+									.ov7670_href(ov7670_href),
+									.ov7670_data(ov7670_data[7:0]),
+									.ov7670_sioc(ov7670_sioc),
+									.ov7670_siod(ov7670_siod),
+									.ov7670_pwdn(ov7670_pwdn),
+									.ov7670_reset(ov7670_reset));
+
+
+ display1 display(.CLOCK50(CLOCK_50),
 									.clock(clock),
 									.reset(!KEY[0]),
-									.VGA_R(MTL2MTL_R),
-									.VGA_G(MTL2MTL_G),
-									.VGA_B(MTL2MTL_B),
-									.VGA_HS(MTL2MTL_HSD),
-									.VGA_VS(MTL2MTL_VSD),
-									.VGA_CLOCK(MTL2MTL_DCLK),
-									.MTL2MTL_TOUCH_INT_n(MTL2MTL_TOUCH_INT_n),
-									.MTL2MTL_TOUCH_I2C_SCL(MTL2MTL_TOUCH_I2C_SCL),
-									.MTL2MTL_TOUCH_I2C_SDA(MTL2MTL_TOUCH_I2C_SDA));
+									.VGA_R(VGA_R),
+									.VGA_G(VGA_G),
+									.VGA_B(VGA_B),
+									.VGA_HS(VGA_HS),
+									.VGA_VS(VGA_VS),
+									.VGA_BLANK_N(VGA_BLANK_N),
+									.VGA_SYNC_N(VGA_SYNC_N),
+									.VGA_CLOCK(VGA_CLK),
+									.CAM_RED(red_cam),
+									.CAM_BLUE(blue_cam),
+									.CAM_GREEN(green_cam),
+									.knop(SW[1]));
+
+/*video_in video_in1(	.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5),
+											.AUD_ADCDAT(AUD_ADCDAT), .AUD_ADCLRCK(AUD_ADCLRCK), .AUD_BCLK(AUD_BCLK),
+											.AUD_DACDAT(AUD_DACDAT), .AUD_DACLRCK(AUD_DACLRCK), .AUD_XCK(AUD_XCK),
+											.TD_CLK27(TD_CLK27), .TD_DATA(TD_DATA), .TD_HS(TD_HS),
+											.TD_RESET_N(TD_RESET_N), .TD_VS(TD_VS), .KEY(KEY), .CLOCK_50(CLOCK_50),
+											.DRAM_ADDR(DRAM_ADDR), .DRAM_BA(DRAM_BA), .DRAM_CAS_N(DRAM_CAS_N),
+											.DRAM_CKE(DRAM_CKE), .DRAM_CLK(DRAM_CLK), .DRAM_CS_N(DRAM_CS_N),
+											.DRAM_DQ(DRAM_DQ), .DRAM_LDQM(DRAM_LDQM), .DRAM_RAS_N(DRAM_RAS_N),
+											.DRAM_UDQM(DRAM_UDQM), .DRAM_WE_N(DRAM_WE_N), .FPGA_I2C_SCLK(FPGA_I2C_SCLK),
+											.FPGA_I2C_SDAT(FPGA_I2C_SDAT), .mRed_out(mRed_out), .mGreen_out(mGreen_out),
+											.mBlue_out(mBlue_out), .VGA_X_out(VGA_X_out), .VGA_Y_out(VGA_Y_out),
+											.VGA_B(vga_b_vin), .VGA_BLANK_N(vga_blank_vin), .VGA_CLK(vga_clk_vin),
+											.VGA_G(vga_g_vin), .VGA_HS(vga_hs_vin),	.VGA_R(vga_r_vin),
+											.VGA_SYNC_N(vga_sync_vin), .VGA_VS(vga_vs_vin) );*/
+
 
 endmodule
 
-module vga_controller(clock, reset, display_col, display_row, visible, hsync, vsync);
+/*module video_in (
+			///////// HEX0 /////////
+      output      [6:0]  HEX0,
+
+      ///////// HEX1 /////////
+      output      [6:0]  HEX1,
+
+      ///////// HEX2 /////////
+      output      [6:0]  HEX2,
+
+      ///////// HEX3 /////////
+      output      [6:0]  HEX3,
+
+      ///////// HEX4 /////////
+      output      [6:0]  HEX4,
+
+      ///////// HEX5 /////////
+      output      [6:0]  HEX5,
+
+			///////// AUD /////////
+      input              AUD_ADCDAT,
+      inout              AUD_ADCLRCK,
+      inout              AUD_BCLK,
+      output             AUD_DACDAT,
+      inout              AUD_DACLRCK,
+      output             AUD_XCK,
+
+			///////// TD /////////
+      input             TD_CLK27,
+      input      [7:0]  TD_DATA,
+      input             TD_HS,
+      output            TD_RESET_N,
+      input             TD_VS,
+
+			///////// KEY /////////
+      input       [3:0]  KEY,
+
+			///////// CLOCK /////////
+      input              CLOCK_50,
+
+			///////// DRAM /////////
+      output      [12:0] DRAM_ADDR,
+      output      [1:0]  DRAM_BA,
+      output             DRAM_CAS_N,
+      output             DRAM_CKE,
+      output             DRAM_CLK,
+      output             DRAM_CS_N,
+      inout       [15:0] DRAM_DQ,
+      output             DRAM_LDQM,
+      output             DRAM_RAS_N,
+      output             DRAM_UDQM,
+      output             DRAM_WE_N,
+
+			///////// FPGA /////////
+      output             FPGA_I2C_SCLK,
+      inout              FPGA_I2C_SDAT,
+
+			// DISPLAY output
+			output 						mRed_out,
+			output						mGreen_out,
+			output						mBlue_out,
+			output						VGA_X_out,
+			output						VGA_Y_out,
+
+			//////////// VGA //////////
+			output		      [7:0]		VGA_B,
+			output		           		VGA_BLANK_N,
+			output		           		VGA_CLK,
+			output 		     	[7:0]		VGA_G,
+			output		           		VGA_HS,
+			output		      [7:0]		VGA_R,
+			output		          		VGA_SYNC_N,
+			output		          		VGA_VS
+	);
+		//=======================================================
+		//  REG/WIRE declarations
+		//=======================================================
+
+		wire	CLK_18_4;
+		wire	CLK_25;
+
+		//	For Audio CODEC
+		wire		AUD_CTRL_CLK;	//	For Audio Controller
+
+		//	For ITU-R 656 Decoder
+		wire	[15:0]	YCbCr;
+		wire	[9:0]	TV_X;
+		wire			TV_DVAL;
+
+		//	For VGA Controller
+	  wire	[7:0]	mRed;
+		wire	[7:0]	mGreen;
+		wire	[7:0]	mBlue;
+		wire	[10:0]	VGA_X;
+		wire	[10:0]	VGA_Y;
+		wire			VGA_Read;	//	VGA data request
+		wire			m1VGA_Read;	//	Read odd field
+		wire			m2VGA_Read;	//	Read even field
+
+		//	For YUV 4:2:2 to YUV 4:4:4
+		wire	[7:0]	mY;
+		wire	[7:0]	mCb;
+		wire	[7:0]	mCr;
+
+		//	For field select
+		wire	[15:0]	mYCbCr;
+		wire	[15:0]	mYCbCr_d;
+		wire	[15:0]	m1YCbCr;
+		wire	[15:0]	m2YCbCr;
+		wire	[15:0]	m3YCbCr;
+
+		//	For Delay Timer
+		wire			TD_Stable;
+		wire			DLY0;
+		wire			DLY1;
+		wire			DLY2;
+
+		//	For Down Sample
+		wire	[3:0]	Remain;
+		wire	[9:0]	Quotient;
+
+		wire			mDVAL;
+
+		wire	[15:0]	m4YCbCr;
+		wire	[15:0]	m5YCbCr;
+		wire	[8:0]	Tmp1,Tmp2;
+		wire	[7:0]	Tmp3,Tmp4;
+
+		wire            NTSC;
+		wire            PAL;
+
+	//=============================================================================
+	// Structural coding
+	//=============================================================================
+
+
+	//	All inout port turn to tri-state
+
+	assign	AUD_ADCLRCK	=	AUD_DACLRCK;
+	assign	GPIO_A	=	36'hzzzzzzzzz;
+	assign	GPIO_B	=	36'hzzzzzzzzz;
+
+	//	Turn On TV Decoder
+	assign	TD_RESET_N	=	1'b1;
+
+	assign	AUD_XCK	=	AUD_CTRL_CLK;
+
+	assign	LED	=	VGA_Y;
+
+	assign	m1VGA_Read	=	VGA_Y[0]		?	1'b0		:	VGA_Read	;
+	assign	m2VGA_Read	=	VGA_Y[0]		?	VGA_Read	:	1'b0		;
+	assign	mYCbCr_d	=	!VGA_Y[0]		?	m1YCbCr		:
+												      m2YCbCr		;
+	assign	mYCbCr		=	m5YCbCr;
+
+	assign	Tmp1	=	m4YCbCr[7:0]+mYCbCr_d[7:0];
+	assign	Tmp2	=	m4YCbCr[15:8]+mYCbCr_d[15:8];
+	assign	Tmp3	=	Tmp1[8:2]+m3YCbCr[7:1];
+	assign	Tmp4	=	Tmp2[8:2]+m3YCbCr[15:9];
+	assign	m5YCbCr	=	{Tmp4,Tmp3};
+	assign VGA_X_out = VGA_X;
+	assign VGA_Y_out = VGA_Y;
+	assign mRed_out = mRed;
+	assign mBlue_out = mBlue;
+	assign mGreen_out = mGreen;
+
+	//	TV Decoder Stable Check
+	TD_Detect			u2	(	.oTD_Stable(TD_Stable),
+								.oNTSC(NTSC),
+								.oPAL(PAL),
+								.iTD_VS(TD_VS),
+								.iTD_HS(TD_HS),
+								.iRST_N(KEY[0])	);
+
+	//	Reset Delay Timer
+	Reset_Delay			u3	(	.iCLK(CLOCK_50),
+								.iRST(TD_Stable),
+								.oRST_0(DLY0),
+								.oRST_1(DLY1),
+								.oRST_2(DLY2));
+
+	//	ITU-R 656 to YUV 4:2:2
+	ITU_656_Decoder		u4	(	//	TV Decoder Input
+								.iTD_DATA(TD_DATA),
+								//	Position Output
+								.oTV_X(TV_X),
+								//	YUV 4:2:2 Output
+								.oYCbCr(YCbCr),
+								.oDVAL(TV_DVAL),
+								//	Control Signals
+								.iSwap_CbCr(Quotient[0]),
+								.iSkip(Remain==4'h0),
+								.iRST_N(DLY1),
+								.iCLK_27(TD_CLK27)	);
+
+								//	For Down Sample 720 to 640
+	DIV 				u5	(	.aclr(!DLY0),
+								.clock(TD_CLK27),
+								.denom(4'h9),
+								.numer(TV_X),
+								.quotient(Quotient),
+								.remain(Remain));
+
+	//	SDRAM frame buffer
+	Sdram_Control_4Port	u6	(	//	HOST Side
+							   .REF_CLK(TD_CLK27),
+								.CLK_18(AUD_CTRL_CLK),
+							   .RESET_N(DLY0),
+								//	FIFO Write Side 1
+							   .WR1_DATA(YCbCr),
+								.WR1(TV_DVAL),
+								.WR1_FULL(WR1_FULL),
+								.WR1_ADDR(0),
+								.WR1_MAX_ADDR(NTSC ? 640*507 : 640*576),		//	525-18
+								.WR1_LENGTH(9'h80),
+								.WR1_LOAD(!DLY0),
+								.WR1_CLK(TD_CLK27),
+								//	FIFO Read Side 1
+							   .RD1_DATA(m1YCbCr),
+					        	.RD1(m1VGA_Read),
+					        	.RD1_ADDR(NTSC ? 640*13 : 640*22),			//	Read odd field and bypess blanking
+								.RD1_MAX_ADDR(NTSC ? 640*253 : 640*262),
+								.RD1_LENGTH(9'h80),
+					        	.RD1_LOAD(!DLY0),
+								.RD1_CLK(TD_CLK27),
+								//	FIFO Read Side 2
+							    .RD2_DATA(m2YCbCr),
+					        	.RD2(m2VGA_Read),
+					        	.RD2_ADDR(NTSC ? 640*267 : 640*310),			//	Read even field and bypess blanking
+								.RD2_MAX_ADDR(NTSC ? 640*507 : 640*550),
+								.RD2_LENGTH(9'h80),
+					        	.RD2_LOAD(!DLY0),
+								.RD2_CLK(TD_CLK27),
+								//	SDRAM Side
+							   .SA(DRAM_ADDR),
+							   .BA(DRAM_BA),
+							   .CS_N(DRAM_CS_N),
+							   .CKE(DRAM_CKE),
+							   .RAS_N(DRAM_RAS_N),
+					         .CAS_N(DRAM_CAS_N),
+					         .WE_N(DRAM_WE_N),
+							   .DQ(DRAM_DQ),
+					         .DQM({DRAM_UDQM,DRAM_LDQM}),
+								.SDR_CLK(DRAM_CLK)	);
+
+	//	YUV 4:2:2 to YUV 4:4:4
+	YUV422_to_444		u7	(	//	YUV 4:2:2 Input
+								.iYCbCr(mYCbCr),
+								//	YUV	4:4:4 Output
+								.oY(mY),
+								.oCb(mCb),
+								.oCr(mCr),
+								//	Control Signals
+								.iX(VGA_X-160),
+								.iCLK(TD_CLK27),
+								.iRST_N(DLY0));
+
+	//	YCbCr 8-bit to RGB-10 bit
+	YCbCr2RGB 			u8	(	//	Output Side
+								.Red(mRed),
+								.Green(mGreen),
+								.Blue(mBlue),
+								.oDVAL(mDVAL),
+								//	Input Side
+								.iY(mY),
+								.iCb(mCb),
+								.iCr(mCr),
+								.iDVAL(VGA_Read),
+								//	Control Signal
+								.iRESET(!DLY2),
+								.iCLK(TD_CLK27));
+
+	//	VGA Controller
+	wire [9:0] vga_r10;
+	wire [9:0] vga_g10;
+	wire [9:0] vga_b10;
+	assign VGA_R = vga_r10[9:2];
+	assign VGA_G = vga_g10[9:2];
+	assign VGA_B = vga_b10[9:2];
+
+		VGA_Ctrl			u9	(	//	Host Side
+								.iRed(mRed),
+								.iGreen(mGreen),
+								.iBlue(mBlue),
+								.oCurrent_X(VGA_X),
+								.oCurrent_Y(VGA_Y),
+								.oRequest(VGA_Read),
+								//	VGA Side
+								.oVGA_R(vga_r10 ),
+								.oVGA_G(vga_g10 ),
+								.oVGA_B(vga_b10 ),
+								.oVGA_HS(VGA_HS),
+								.oVGA_VS(VGA_VS),
+								.oVGA_SYNC(VGA_SYNC_N),
+								.oVGA_BLANK(VGA_BLANK_N),
+								.oVGA_CLOCK(VGA_CLK),
+								//	Control Signal
+								.iCLK(TD_CLK27),
+								.iRST_N(DLY2)	);
+
+		//	Line buffer, delay one line
+		Line_Buffer u10	(	.aclr(!DLY0),
+						.clken(VGA_Read),
+						.clock(TD_CLK27),
+						.shiftin(mYCbCr_d),
+						.shiftout(m3YCbCr));
+
+		Line_Buffer u11	(	.aclr(!DLY0),
+						.clken(VGA_Read),
+						.clock(TD_CLK27),
+						.shiftin(m3YCbCr),
+						.shiftout(m4YCbCr));
+
+
+
+		//	Audio CODEC and video decoder setting
+		I2C_AV_Config 	u1	(	//	Host Side
+								.iCLK(CLOCK_50),
+								.iRST_N(KEY[0]),
+								//	I2C Side
+								.I2C_SCLK(FPGA_I2C_SCLK),
+								.I2C_SDAT(FPGA_I2C_SDAT)	);
+endmodule*/
+
+module onboard_controller(clock, reset, display_col, display_row, visible, hsync, vsync);
 
 	// 72 Hz 800 x 600 VGA - 50MHz clock
 
-	parameter HOR_FIELD = 779;
-	parameter HOR_STR_SYNC = 1009;
-	parameter HOR_STP_SYNC = 1039;
-	parameter HOR_TOTAL = 1055;
-	parameter VER_FIELD = 479;
-	parameter VER_STR_SYNC = 501;
-	parameter VER_STP_SYNC = 514;
-	parameter VER_TOTAL= 524;
+	parameter HOR_FIELD = 1279;
+	parameter HOR_STR_SYNC = 1327;
+	parameter HOR_STP_SYNC = 1439;
+	parameter HOR_TOTAL = 1687;
+	parameter VER_FIELD = 1023;
+	parameter VER_STR_SYNC = 1024;
+	parameter VER_STP_SYNC = 1027;
+	parameter VER_TOTAL= 1065;
 
 
 	input clock;
@@ -200,31 +567,23 @@ endmodule
 
 
 module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
-								VGA_HS, VGA_VS, VGA_CLOCK, MTL2MTL_TOUCH_INT_n,
-								MTL2MTL_TOUCH_I2C_SCL,MTL2MTL_TOUCH_I2C_SDA);
+								VGA_HS, VGA_VS, VGA_CLOCK, VGA_SYNC_N, VGA_BLANK_N, CAM_RED, CAM_GREEN, CAM_BLUE, knop);
 
 	input CLOCK50;
 	input clock;
 	input reset;
+	input CAM_RED, CAM_BLUE, CAM_GREEN;
 
-	input MTL2MTL_TOUCH_INT_n;
-
-	output MTL2MTL_TOUCH_I2C_SCL;
-	inout MTL2MTL_TOUCH_I2C_SDA;
+	input knop;
 
 	output [7:0] VGA_R, VGA_G, VGA_B;
 
 	output VGA_CLOCK;
 	output reg VGA_HS, VGA_VS;
 
-	wire [7:0] VGA_R, VGA_G, VGA_B;
-	wire touch_ready;
+
 	reg [7:0] red, green, blue;
 
-	wire [9:0] xco;
-	wire [3:0] touch_count;
-	wire [8:0] yco;
-	wire [7:0] gesture;
 
 	assign VGA_R = red;
 	assign VGA_G = green;
@@ -232,45 +591,41 @@ module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
 	// add one additional clock cycle to compensate for videoDAC delay
 	always @(posedge clock) VGA_HS = hsync;
 	always @(posedge clock) VGA_VS = vsync;
+	always @ ( posedge clock) begin VGA_BLANK_N = hsync & vsync;
+	assign VGA_SYNC_N = 1'b0;
+
+	end
 
 	assign VGA_CLOCK = clock;
 
 	wire hsync, vsync;
 	wire visible;
 
-	reg [9:0] vierkantjeX;
-	reg [8:0] vierkantjeY;
+	wire [4:0] red_img, green_img, blue_img;
+	wire [14:0] q;
+	assign red_img = q[14:10];
+	assign green_img = q[9:5];
+	assign blue_img = q[4:0];
+
+	wire [11:0] display_col;
+	wire [10:0] display_row;
+
+	wire [15:0] address;
+
+	assign address[15:8] = display_col;
+	assign address[7:0] = display_row;
 
 
 
-	i2c_touch_config touch(.iCLK(CLOCK50),
-												.iRSTN(reset),
-												.INT_n(MTL2MTL_TOUCH_INT_n),
-								  			.I2C_SCLK(MTL2MTL_TOUCH_I2C_SCL),
-												.I2C_SDAT(MTL2MTL_TOUCH_I2C_SDA),
-											  .oREADY(touch_ready),
-												.oREG_X1(xco),
-												.oREG_Y1(yco),
-												.oREG_TOUCH_COUNT(touch_count),
-											  .oREG_GESTURE(gesture));
+
+
+	image_memory image_memory(.address(address), .wren(1'b0), .q(q));
+
+
+	onboard_controller onboard(clock, reset, display_col, display_row, visible, hsync, vsync);
 
 
 
-	vga_controller vga(clock, reset, display_col, display_row, visible, hsync, vsync);
-
-
-	always @(posedge CLOCK50)begin
-		if(reset) begin
-			vierkantjeX = 90;
-			vierkantjeY = 90;
-		end else begin
-			if(touch_ready) begin
-				vierkantjeX = xco;
-				vierkantjeY = yco;
-
-			end
-		end
-	end
 
 
 
@@ -279,26 +634,13 @@ module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
 			red = 0; green = 0; blue = 0;
 		end else begin
 			if (visible) begin
-				if(vierkantjeY -20 < display_col && display_col < vierkantjeY + 20) begin
-					if(vierkantjeX - 20 < display_row && display_row < vierkantjeX + 20) begin
-						red = 255; blue = 0; green = 0;
-					end
-					else begin
-						if(touch_ready) begin
-							red = 100; blue = 10; green = 100;
-						end else begin
-							red = 255; blue = 25; green = 0;
-						end
-					end
+				/*if(knop) begin
+					 red = CAM_RED; green = CAM_GREEN; blue = CAM_BLUE;
 				end
-
-				else begin
-					if(touch_ready)begin
-						red =100; blue = 10; green = 100;
-					end else begin
-					red = 255; blue = 25; green = 0;
-					end
-				end
+			  else begin*/
+					//red <= {red_img, 3'b0}; green = {green_img, 3'b0}; blue = {blue_img, 3'b0};
+					red = 255; blue = 0; green = 0;
+			//	end
 			end else begin
 				red = 0; green = 0; blue = 0;
 			end

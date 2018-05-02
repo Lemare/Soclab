@@ -1,22 +1,33 @@
 
-State Machine - |greenscreen|display1:display|i2c_touch_config:touch|c_state
-Name c_state.1001 c_state.1000 c_state.0111 c_state.0110 c_state.0101 c_state.0100 c_state.0011 c_state.0010 c_state.0001 c_state.0000 
-c_state.0000 0 0 0 0 0 0 0 0 0 0 
-c_state.0001 0 0 0 0 0 0 0 0 1 1 
-c_state.0010 0 0 0 0 0 0 0 1 0 1 
-c_state.0011 0 0 0 0 0 0 1 0 0 1 
-c_state.0100 0 0 0 0 0 1 0 0 0 1 
-c_state.0101 0 0 0 0 1 0 0 0 0 1 
-c_state.0110 0 0 0 1 0 0 0 0 0 1 
-c_state.0111 0 0 1 0 0 0 0 0 0 1 
-c_state.1000 0 1 0 0 0 0 0 0 0 1 
-c_state.1001 1 0 0 0 0 0 0 0 0 1 
+State Machine - |greenscreen|digital_cam_impl4:camera|state_current
+Name state_current.S7_NORMAL_VIDEO_MODE state_current.S6_DONE_ED state_current.S5_PROCESS_ED state_current.S4_RESET_ED state_current.S3_DONE_BW state_current.S2_PROCESS_BW state_current.S1_RESET_BW state_current.S0_RESET 
+state_current.S0_RESET 0 0 0 0 0 0 0 0 
+state_current.S1_RESET_BW 0 0 0 0 0 0 1 1 
+state_current.S2_PROCESS_BW 0 0 0 0 0 1 0 1 
+state_current.S3_DONE_BW 0 0 0 0 1 0 0 1 
+state_current.S4_RESET_ED 0 0 0 1 0 0 0 1 
+state_current.S5_PROCESS_ED 0 0 1 0 0 0 0 1 
+state_current.S6_DONE_ED 0 1 0 0 0 0 0 1 
+state_current.S7_NORMAL_VIDEO_MODE 1 0 0 0 0 0 0 1 
 
-State Machine - |greenscreen|display1:display|i2c_touch_config:touch|i2c_master_byte_ctrl:byte_controller|c_state
-Name c_state.ST_IDLE c_state.ST_STOP c_state.ST_ACK c_state.ST_WRITE c_state.ST_READ c_state.ST_START 
-c_state.ST_IDLE 0 0 0 0 0 0 
-c_state.ST_START 1 0 0 0 0 1 
-c_state.ST_READ 1 0 0 0 1 0 
-c_state.ST_WRITE 1 0 0 1 0 0 
-c_state.ST_ACK 1 0 1 0 0 0 
-c_state.ST_STOP 1 1 0 0 0 0 
+State Machine - |greenscreen|digital_cam_impl4:camera|debounce:Inst_debounce_normal_or_edgedetect|state_reg
+Name state_reg.wait0_3 state_reg.wait0_2 state_reg.wait0_1 state_reg.one state_reg.wait1_3 state_reg.wait1_2 state_reg.wait1_1 state_reg.zero 
+state_reg.zero 0 0 0 0 0 0 0 0 
+state_reg.wait1_1 0 0 0 0 0 0 1 1 
+state_reg.wait1_2 0 0 0 0 0 1 0 1 
+state_reg.wait1_3 0 0 0 0 1 0 0 1 
+state_reg.one 0 0 0 1 0 0 0 1 
+state_reg.wait0_1 0 0 1 0 0 0 0 1 
+state_reg.wait0_2 0 1 0 0 0 0 0 1 
+state_reg.wait0_3 1 0 0 0 0 0 0 1 
+
+State Machine - |greenscreen|digital_cam_impl4:camera|debounce:Inst_debounce_resend|state_reg
+Name state_reg.wait0_3 state_reg.wait0_2 state_reg.wait0_1 state_reg.one state_reg.wait1_3 state_reg.wait1_2 state_reg.wait1_1 state_reg.zero 
+state_reg.zero 0 0 0 0 0 0 0 0 
+state_reg.wait1_1 0 0 0 0 0 0 1 1 
+state_reg.wait1_2 0 0 0 0 0 1 0 1 
+state_reg.wait1_3 0 0 0 0 1 0 0 1 
+state_reg.one 0 0 0 1 0 0 0 1 
+state_reg.wait0_1 0 0 1 0 0 0 0 1 
+state_reg.wait0_2 0 1 0 0 0 0 0 1 
+state_reg.wait0_3 1 0 0 0 0 0 0 1 

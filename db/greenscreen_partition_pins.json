@@ -4,79 +4,79 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "MTL2MTL_B[0]",
+					"name" : "VGA_B[3]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_B[1]",
+					"name" : "VGA_B[4]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_B[3]",
+					"name" : "VGA_B[5]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_B[4]",
+					"name" : "VGA_B[6]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_G[2]",
+					"name" : "VGA_B[7]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_G[5]",
+					"name" : "VGA_G[3]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_G[6]",
+					"name" : "VGA_G[4]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_HSD",
+					"name" : "VGA_G[5]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[0]",
+					"name" : "VGA_G[6]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[1]",
+					"name" : "VGA_G[7]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[2]",
+					"name" : "VGA_HS",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[3]",
+					"name" : "VGA_R[3]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[4]",
+					"name" : "VGA_R[4]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[5]",
+					"name" : "VGA_R[5]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[6]",
+					"name" : "VGA_R[6]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_R[7]",
+					"name" : "VGA_R[7]",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_TOUCH_I2C_SCL",
+					"name" : "VGA_VS",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_VSD",
+					"name" : "ov7670_sioc",
 					"strict" : false
 				},
 				{
-					"name" : "MTL2MTL_TOUCH_I2C_SDA",
+					"name" : "ov7670_siod",
 					"strict" : false
 				},
 				{
@@ -84,11 +84,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
-					"strict" : false
-				},
-				{
-					"name" : "MTL2MTL_TOUCH_INT_n",
+					"name" : "SW[7]",
 					"strict" : false
 				}
 			]

@@ -11,8 +11,12 @@ create_clock -period 20.000ns [get_ports CLOCK2_50]
 create_clock -period 20.000ns [get_ports CLOCK3_50]
 create_clock -period 20.000ns [get_ports CLOCK4_50]
 
+create_clock -period 33.333ns  -name ov7670_pclk[get_ports ov7670_pclk]
+
 create_clock -period "27 MHz"  -name tv_27m [get_ports TD_CLK27]
+
 create_clock -period "100 MHz" -name clk_dram [get_ports DRAM_CLK]
+
 # VGA : 640x480@60Hz
 #create_clock -period "25.18 MHz" -name clk_vga [get_ports VGA_CLK]
 # VGA : 800x600@60Hz
@@ -140,6 +144,3 @@ set_output_delay -min -clock clk_vga -1.485 [get_ports VGA_BLANK]
 #**************************************************************
 # Set Load
 #**************************************************************
-
-
-

@@ -3,7 +3,7 @@ module display_input(
 	input 		     [7:0]		TD_DATA,
 	input 		          		TD_HS,
 	output		          		TD_RESET_N,
-	input 		          		TD_VS,
+	input 		          		TD_VS
   );
 
   parameter HOR_FIELD = 1279;
@@ -16,3 +16,5 @@ module display_input(
   parameter VER_TOTAL= 520;
 
   reg line_start_pulse;
+
+  endmodule 
