@@ -1,5 +1,5 @@
 Analysis & Synthesis report for greenscreen
-Wed May 09 17:39:06 2018
+Wed May 09 17:50:17 2018
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -104,7 +104,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed May 09 17:39:05 2018       ;
+; Analysis & Synthesis Status     ; Successful - Wed May 09 17:50:17 2018       ;
 ; Quartus Prime Version           ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                   ; greenscreen                                 ;
 ; Top-level Entity Name           ; greenscreen                                 ;
@@ -351,14 +351,14 @@ agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 1474           ;
+; Estimate of Logic utilization (ALMs needed) ; 1476           ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 1605           ;
+; Combinational ALUT usage for logic          ; 1612           ;
 ;     -- 7 input functions                    ; 2              ;
-;     -- 6 input functions                    ; 315            ;
-;     -- 5 input functions                    ; 327            ;
-;     -- 4 input functions                    ; 137            ;
-;     -- <=3 input functions                  ; 824            ;
+;     -- 6 input functions                    ; 326            ;
+;     -- 5 input functions                    ; 319            ;
+;     -- 4 input functions                    ; 140            ;
+;     -- <=3 input functions                  ; 825            ;
 ;                                             ;                ;
 ; Dedicated logic registers                   ; 2389           ;
 ;                                             ;                ;
@@ -373,7 +373,7 @@ agreement for further details.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 1251           ;
-; Total fan-out                               ; 27518          ;
+; Total fan-out                               ; 27542          ;
 ; Average fan-out                             ; 5.56           ;
 +---------------------------------------------+----------------+
 
@@ -383,7 +383,7 @@ agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                     ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |greenscreen                                                                                                                            ; 1605 (167)          ; 2389 (40)                 ; 3168128           ; 0          ; 194  ; 0            ; |greenscreen                                                                                                                                                                                                                                                                                                                                            ; greenscreen                       ; work         ;
+; |greenscreen                                                                                                                            ; 1612 (174)          ; 2389 (40)                 ; 3168128           ; 0          ; 194  ; 0            ; |greenscreen                                                                                                                                                                                                                                                                                                                                            ; greenscreen                       ; work         ;
 ;    |digital_cam_impl4:camera|                                                                                                           ; 948 (61)            ; 481 (8)                   ; 3152384           ; 0          ; 0    ; 0            ; |greenscreen|digital_cam_impl4:camera                                                                                                                                                                                                                                                                                                                   ; digital_cam_impl4                 ; work         ;
 ;       |Address_Generator:Inst_Address_Generator|                                                                                        ; 19 (19)             ; 17 (17)                   ; 0                 ; 0          ; 0    ; 0            ; |greenscreen|digital_cam_impl4:camera|Address_Generator:Inst_Address_Generator                                                                                                                                                                                                                                                                          ; Address_Generator                 ; work         ;
 ;       |RGB:Inst_RGB|                                                                                                                    ; 74 (74)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |greenscreen|digital_cam_impl4:camera|RGB:Inst_RGB                                                                                                                                                                                                                                                                                                      ; RGB                               ; work         ;
@@ -859,7 +859,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 2389  ;
-; Number of registers using Synchronous Clear  ; 353   ;
+; Number of registers using Synchronous Clear  ; 337   ;
 ; Number of registers using Synchronous Load   ; 234   ;
 ; Number of registers using Asynchronous Clear ; 671   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -992,40 +992,38 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|divider[7]                                                                                                        ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|busy_sr[12]                                                                                                       ;
-; 3:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|Address_Generator:Inst_Address_Generator|val[9]                                                                                                                                       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |greenscreen|desired_CB[4]                                                                                                                                                                                                  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |greenscreen|desired_CR[1]                                                                                                                                                                                                  ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_capture:Inst_ov7670_capture|href_last[2]                                                                                                                                       ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |greenscreen|display1:display|onboard_controller:onboard|display_col[3]                                                                                                                                                     ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |greenscreen|display1:display|onboard_controller:onboard|display_row[1]                                                                                                                                                     ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|SyncSignalsDelayer:Delayer|rowsDelayCounterFalling[7]                        ;
-; 9:1                ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_black_white:Inst_black_white|rdaddr_buf1_r[8]                                                                                                                                      ;
-; 9:1                ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_black_white:Inst_black_white|wraddr_buf1_r[1]                                                                                                                                      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|divider[2]                                                                                                        ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|busy_sr[25]                                                                                                       ;
+; 3:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|Address_Generator:Inst_Address_Generator|val[5]                                                                                                                                       ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_capture:Inst_ov7670_capture|href_last[1]                                                                                                                                       ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |greenscreen|display1:display|onboard_controller:onboard|display_col[11]                                                                                                                                                    ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |greenscreen|display1:display|onboard_controller:onboard|display_row[0]                                                                                                                                                     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|SyncSignalsDelayer:Delayer|rowsDelayCounterFalling[3]                        ;
+; 9:1                ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_black_white:Inst_black_white|rdaddr_buf1_r[14]                                                                                                                                     ;
+; 9:1                ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_black_white:Inst_black_white|wraddr_buf1_r[4]                                                                                                                                      ;
 ; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|led_done_r                                                                                                                                      ;
-; 10:1               ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|rdaddr_buf1_r[15]                                                                                                                               ;
-; 10:1               ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_black_white:Inst_black_white|rw_cntr[2]                                                                                                                                            ;
-; 11:1               ; 17 bits   ; 119 LEs       ; 0 LEs                ; 119 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|rd_cntr[8]                                                                                                                                      ;
+; 10:1               ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|rdaddr_buf1_r[16]                                                                                                                               ;
+; 10:1               ; 17 bits   ; 102 LEs       ; 0 LEs                ; 102 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_black_white:Inst_black_white|rw_cntr[14]                                                                                                                                           ;
+; 11:1               ; 17 bits   ; 119 LEs       ; 0 LEs                ; 119 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|rd_cntr[9]                                                                                                                                      ;
 ; 11:1               ; 17 bits   ; 119 LEs       ; 0 LEs                ; 119 LEs                ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|wr_cntr[12]                                                                                                                                     ;
-; 12:1               ; 9 bits    ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|ColsCounter[7]                                                                                                                                  ;
-; 3:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|data_sr[29]                                                                                                       ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|data_sr[16]                                                                                                       ;
+; 12:1               ; 9 bits    ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|ColsCounter[1]                                                                                                                                  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|data_sr[23]                                                                                                       ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |greenscreen|digital_cam_impl4:camera|ov7670_controller:Inst_ov7670_controller|i2c_sender:Inst_i2c_sender|data_sr[12]                                                                                                       ;
 ; 10:1               ; 2 bits    ; 12 LEs        ; 10 LEs               ; 2 LEs                  ; Yes        ; |greenscreen|digital_cam_impl4:camera|do_black_white:Inst_black_white|state[0]                                                                                                                                              ;
 ; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|DoubleFiFOLineBuffer:DoubleLineBuffer|FIFOLineBuffer:LineBuffer1|ColsCounter ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out2[6]                                                                ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out9[6]                                                                ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; No         ; |greenscreen|digital_cam_impl4:camera|Selector17                                                                                                                                                                            ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out2[4]                                                                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out9[5]                                                                ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; No         ; |greenscreen|digital_cam_impl4:camera|Selector31                                                                                                                                                                            ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out7[7]                                                                ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out4[6]                                                                ;
-; 5:1                ; 17 bits   ; 51 LEs        ; 34 LEs               ; 17 LEs                 ; No         ; |greenscreen|digital_cam_impl4:camera|Selector54                                                                                                                                                                            ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out1[5]                                                                ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out4[4]                                                                ;
+; 5:1                ; 17 bits   ; 51 LEs        ; 34 LEs               ; 17 LEs                 ; No         ; |greenscreen|digital_cam_impl4:camera|Selector58                                                                                                                                                                            ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out1[7]                                                                ;
 ; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out6[6]                                                                ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out3[4]                                                                ;
-; 16:1               ; 12 bits   ; 120 LEs       ; 120 LEs              ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|frame_buffer:Inst_frame_buf_1|q[3]                                                                                                                                                    ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|pdata_out3[7]                                                                ;
+; 16:1               ; 12 bits   ; 120 LEs       ; 120 LEs              ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|frame_buffer:Inst_frame_buf_1|q[11]                                                                                                                                                   ;
 ; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|debounce:Inst_debounce_normal_or_edgedetect|Selector1                                                                                                                                 ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|debounce:Inst_debounce_resend|Selector1                                                                                                                                               ;
-; 18:1               ; 12 bits   ; 144 LEs       ; 144 LEs              ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|RGB:Inst_RGB|R[0]                                                                                                                                                                     ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|debounce:Inst_debounce_resend|Selector5                                                                                                                                               ;
+; 18:1               ; 12 bits   ; 144 LEs       ; 144 LEs              ; 0 LEs                  ; No         ; |greenscreen|digital_cam_impl4:camera|RGB:Inst_RGB|R[2]                                                                                                                                                                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -2699,14 +2697,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; arriav_ff             ; 548                         ;
 ;     CLR               ; 42                          ;
 ;     CLR SCLR          ; 4                           ;
-;     ENA               ; 80                          ;
+;     ENA               ; 96                          ;
 ;     ENA CLR           ; 4                           ;
-;     ENA SCLR          ; 179                         ;
+;     ENA SCLR          ; 163                         ;
 ;     SCLR              ; 70                          ;
 ;     SLD               ; 1                           ;
 ;     plain             ; 168                         ;
 ; arriav_io_obuf        ; 22                          ;
-; arriav_lcell_comb     ; 1155                        ;
+; arriav_lcell_comb     ; 1162                        ;
 ;     arith             ; 440                         ;
 ;         0 data inputs ; 17                          ;
 ;         1 data inputs ; 308                         ;
@@ -2715,14 +2713,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         4 data inputs ; 18                          ;
 ;     extend            ; 2                           ;
 ;         7 data inputs ; 2                           ;
-;     normal            ; 648                         ;
+;     normal            ; 655                         ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 6                           ;
-;         2 data inputs ; 67                          ;
+;         2 data inputs ; 68                          ;
 ;         3 data inputs ; 117                         ;
-;         4 data inputs ; 79                          ;
-;         5 data inputs ; 155                         ;
-;         6 data inputs ; 222                         ;
+;         4 data inputs ; 82                          ;
+;         5 data inputs ; 147                         ;
+;         6 data inputs ; 233                         ;
 ;     shared            ; 65                          ;
 ;         0 data inputs ; 6                           ;
 ;         1 data inputs ; 23                          ;
@@ -2733,7 +2731,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixv_ram_block    ; 408                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 17.60                       ;
-; Average LUT depth     ; 6.61                        ;
+; Average LUT depth     ; 6.71                        ;
 +-----------------------+-----------------------------+
 
 
@@ -2742,7 +2740,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:11     ;
+; Top            ; 00:00:08     ;
 +----------------+--------------+
 
 
@@ -3039,7 +3037,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Wed May 09 17:37:20 2018
+    Info: Processing started: Wed May 09 17:48:55 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off greenscreen -c greenscreen
 Info (20032): Parallel compilation is enabled and will use up to 2 processors
 Info (12021): Found 1 design units, including 1 entities, in source file pll33.v
@@ -3111,8 +3109,8 @@ Info (12021): Found 2 design units, including 1 entities, in source file my_altp
     Info (12023): Found entity 1: my_altpll File: Y:/Documents/greenscreen/my_altpll.vhd Line: 43
 Info (12021): Found 3 design units, including 3 entities, in source file greenscreen.v
     Info (12023): Found entity 1: greenscreen File: Y:/Documents/greenscreen/greenscreen.v Line: 6
-    Info (12023): Found entity 2: onboard_controller File: Y:/Documents/greenscreen/greenscreen.v Line: 548
-    Info (12023): Found entity 3: display1 File: Y:/Documents/greenscreen/greenscreen.v Line: 629
+    Info (12023): Found entity 2: onboard_controller File: Y:/Documents/greenscreen/greenscreen.v Line: 545
+    Info (12023): Found entity 3: display1 File: Y:/Documents/greenscreen/greenscreen.v Line: 626
 Info (12021): Found 1 design units, including 1 entities, in source file display_input.v
     Info (12023): Found entity 1: display_input File: Y:/Documents/greenscreen/display_input.v Line: 1
 Info (12021): Found 2 design units, including 1 entities, in source file ed_cache_system.vhd
@@ -3626,12 +3624,12 @@ Info (12128): Elaborating entity "Counter" for hierarchy "digital_cam_impl4:came
 Info (12128): Elaborating entity "Counter" for hierarchy "digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|CacheSystem:CacheSystem|Counter:ColsCounter" File: Y:/Documents/greenscreen/ed_cache_system.vhd Line: 124
 Info (12128): Elaborating entity "edge_sobel" for hierarchy "digital_cam_impl4:camera|do_edge_detection:Inst_edge_detection|edge_sobel_wrapper:Inst_edge_sobel_wrapper|edge_sobel:krnl" File: Y:/Documents/greenscreen/ed_edge_sobel_wrapper.vhd Line: 75
 Info (12128): Elaborating entity "display1" for hierarchy "display1:display" File: Y:/Documents/greenscreen/greenscreen.v Line: 153
-Warning (10036): Verilog HDL or VHDL warning at greenscreen.v(662): object "red_img" assigned a value but never read File: Y:/Documents/greenscreen/greenscreen.v Line: 662
-Warning (10036): Verilog HDL or VHDL warning at greenscreen.v(662): object "green_img" assigned a value but never read File: Y:/Documents/greenscreen/greenscreen.v Line: 662
-Warning (10036): Verilog HDL or VHDL warning at greenscreen.v(662): object "blue_img" assigned a value but never read File: Y:/Documents/greenscreen/greenscreen.v Line: 662
-Warning (10230): Verilog HDL assignment warning at greenscreen.v(673): truncated value with size 12 to match size of target (8) File: Y:/Documents/greenscreen/greenscreen.v Line: 673
-Warning (10230): Verilog HDL assignment warning at greenscreen.v(674): truncated value with size 11 to match size of target (8) File: Y:/Documents/greenscreen/greenscreen.v Line: 674
-Info (12128): Elaborating entity "image_memory" for hierarchy "display1:display|image_memory:image_memory" File: Y:/Documents/greenscreen/greenscreen.v Line: 680
+Warning (10036): Verilog HDL or VHDL warning at greenscreen.v(659): object "red_img" assigned a value but never read File: Y:/Documents/greenscreen/greenscreen.v Line: 659
+Warning (10036): Verilog HDL or VHDL warning at greenscreen.v(659): object "green_img" assigned a value but never read File: Y:/Documents/greenscreen/greenscreen.v Line: 659
+Warning (10036): Verilog HDL or VHDL warning at greenscreen.v(659): object "blue_img" assigned a value but never read File: Y:/Documents/greenscreen/greenscreen.v Line: 659
+Warning (10230): Verilog HDL assignment warning at greenscreen.v(670): truncated value with size 12 to match size of target (8) File: Y:/Documents/greenscreen/greenscreen.v Line: 670
+Warning (10230): Verilog HDL assignment warning at greenscreen.v(671): truncated value with size 11 to match size of target (8) File: Y:/Documents/greenscreen/greenscreen.v Line: 671
+Info (12128): Elaborating entity "image_memory" for hierarchy "display1:display|image_memory:image_memory" File: Y:/Documents/greenscreen/greenscreen.v Line: 677
 Info (12128): Elaborating entity "altsyncram" for hierarchy "display1:display|image_memory:image_memory|altsyncram:altsyncram_component" File: Y:/Documents/greenscreen/image_memory.v Line: 86
 Info (12130): Elaborated megafunction instantiation "display1:display|image_memory:image_memory|altsyncram:altsyncram_component" File: Y:/Documents/greenscreen/image_memory.v Line: 86
 Info (12133): Instantiated megafunction "display1:display|image_memory:image_memory|altsyncram:altsyncram_component" with the following parameter: File: Y:/Documents/greenscreen/image_memory.v Line: 86
@@ -3776,9 +3774,9 @@ Info (12128): Elaborating entity "altsyncram_6lo1" for hierarchy "display1:displ
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_bhb.tdf
     Info (12023): Found entity 1: mux_bhb File: Y:/Documents/greenscreen/db/mux_bhb.tdf Line: 23
 Info (12128): Elaborating entity "mux_bhb" for hierarchy "display1:display|image_memory:image_memory|altsyncram:altsyncram_component|altsyncram_6lo1:auto_generated|mux_bhb:mux2" File: Y:/Documents/greenscreen/db/altsyncram_6lo1.tdf Line: 47
-Info (12128): Elaborating entity "onboard_controller" for hierarchy "display1:display|onboard_controller:onboard" File: Y:/Documents/greenscreen/greenscreen.v Line: 683
-Warning (10230): Verilog HDL assignment warning at greenscreen.v(582): truncated value with size 32 to match size of target (12) File: Y:/Documents/greenscreen/greenscreen.v Line: 582
-Warning (10230): Verilog HDL assignment warning at greenscreen.v(590): truncated value with size 32 to match size of target (11) File: Y:/Documents/greenscreen/greenscreen.v Line: 590
+Info (12128): Elaborating entity "onboard_controller" for hierarchy "display1:display|onboard_controller:onboard" File: Y:/Documents/greenscreen/greenscreen.v Line: 680
+Warning (10230): Verilog HDL assignment warning at greenscreen.v(579): truncated value with size 32 to match size of target (12) File: Y:/Documents/greenscreen/greenscreen.v Line: 579
+Warning (10230): Verilog HDL assignment warning at greenscreen.v(587): truncated value with size 32 to match size of target (11) File: Y:/Documents/greenscreen/greenscreen.v Line: 587
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ie84.tdf
     Info (12023): Found entity 1: altsyncram_ie84 File: Y:/Documents/greenscreen/db/altsyncram_ie84.tdf Line: 28
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_elc.tdf
@@ -3801,7 +3799,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr
     Info (12023): Found entity 1: cmpr_99c File: Y:/Documents/greenscreen/db/cmpr_99c.tdf Line: 23
 Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "auto_signaltap_0"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2018.05.09.17:38:32 Progress: Loading sld117059c3/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2018.05.09.17:49:47 Progress: Loading sld117059c3/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -4265,18 +4263,18 @@ Warning (21074): Design contains 17 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "TD_VS" File: Y:/Documents/greenscreen/greenscreen.v Line: 42
     Warning (15610): No output dependent on input pin "MTL2MTL_TOUCH_INT_n" File: Y:/Documents/greenscreen/greenscreen.v Line: 74
     Warning (15610): No output dependent on input pin "AUD_ADCDAT" File: Y:/Documents/greenscreen/greenscreen.v Line: 78
-Info (21057): Implemented 4061 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4068 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 45 input pins
     Info (21059): Implemented 131 output pins
     Info (21060): Implemented 22 bidirectional pins
-    Info (21061): Implemented 3327 logic cells
+    Info (21061): Implemented 3334 logic cells
     Info (21064): Implemented 531 RAM segments
     Info (21065): Implemented 4 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 608 warnings
-    Info: Peak virtual memory: 921 megabytes
-    Info: Processing ended: Wed May 09 17:39:06 2018
-    Info: Elapsed time: 00:01:46
-    Info: Total CPU time (on all processors): 00:01:50
+    Info: Peak virtual memory: 923 megabytes
+    Info: Processing ended: Wed May 09 17:50:18 2018
+    Info: Elapsed time: 00:01:23
+    Info: Total CPU time (on all processors): 00:01:21
 
 
 +------------------------------------------+

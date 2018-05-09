@@ -189,7 +189,7 @@ always@(posedge CLOCK_50)begin
 end
 
 always@(posedge CLOCK_50) begin
-	if (VGA_CB <= desired_CB & VGA_CR <= desired_CR) begin
+	if (VGA_CB >= desired_CB & VGA_CR >= desired_CR) begin
 		VGA_R_out = red_cam;
 		VGA_B_out = blue_cam;
 		VGA_G_out = green_cam;
