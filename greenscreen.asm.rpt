@@ -1,5 +1,5 @@
 Assembler report for greenscreen
-Wed May 02 16:45:19 2018
+Wed May 09 17:44:53 2018
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -39,7 +39,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed May 02 16:45:19 2018 ;
+; Assembler Status      ; Successful - Wed May 09 17:44:53 2018 ;
 ; Revision Name         ; greenscreen                           ;
 ; Top-level Entity Name ; greenscreen                           ;
 ; Family                ; Cyclone V                             ;
@@ -79,8 +79,8 @@ agreement for further details.
 ; Option         ; Setting                                           ;
 +----------------+---------------------------------------------------+
 ; Device         ; 5CSEMA5F31C6                                      ;
-; JTAG usercode  ; 0x01088921                                        ;
-; Checksum       ; 0x01088921                                        ;
+; JTAG usercode  ; 0x08A32338                                        ;
+; Checksum       ; 0x08A32338                                        ;
 +----------------+---------------------------------------------------+
 
 
@@ -90,13 +90,13 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Wed May 02 16:45:02 2018
+    Info: Processing started: Wed May 09 17:44:26 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off greenscreen -c greenscreen
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 775 megabytes
-    Info: Processing ended: Wed May 02 16:45:19 2018
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:12
+    Info: Peak virtual memory: 837 megabytes
+    Info: Processing ended: Wed May 09 17:44:54 2018
+    Info: Elapsed time: 00:00:28
+    Info: Total CPU time (on all processors): 00:00:16
 
 

@@ -1,1 +1,3 @@
 v1
+GXB_MERGING,PLL Output Counter,289208,digital_cam_impl4:camera|my_altpll:Inst_four_clocks_pll|altpll:altpll_component|my_altpll_altpll:auto_generated|generic_pll2~PLL_OUTPUT_COUNTER,digital_cam_impl4:camera|my_altpll:Inst_four_clocks_pll|altpll:altpll_component|my_altpll_altpll:auto_generated|generic_pll4~PLL_OUTPUT_COUNTER,
+GXB_MERGING,Clock enable block,27532,digital_cam_impl4:camera|my_altpll:Inst_four_clocks_pll|altpll:altpll_component|my_altpll_altpll:auto_generated|wire_generic_pll2_outclk~CLKENA0,digital_cam_impl4:camera|my_altpll:Inst_four_clocks_pll|altpll:altpll_component|my_altpll_altpll:auto_generated|wire_generic_pll4_outclk~CLKENA0,

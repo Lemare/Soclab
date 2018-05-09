@@ -44,6 +44,7 @@ entity digital_cam_impl4 is
     vga_blank_N : out STD_LOGIC;
     vga_sync_N  : out STD_LOGIC;
     vga_CLK     : out STD_LOGIC;
+    clockcamera: out STD_LOGIC;
 
     ov7670_pclk  : in STD_LOGIC;
     ov7670_xclk  : out STD_LOGIC;
@@ -198,6 +199,8 @@ architecture my_structural of digital_cam_impl4 is
   signal done_BW : std_logic := '0';
   signal done_ED : std_logic := '0';
   signal done_capture_new_frame : std_logic := '0';
+
+
 
   -- buffer 1;
   signal wren_buf_1 : std_logic;
@@ -468,6 +471,7 @@ begin
     sw => sw_resend_reg_values,
     db => resend_reg_values
   );
+
   Inst_debounce_normal_or_edgedetect: debounce PORT MAP(
     clk => clk_100,
     reset => reset_global,
@@ -565,7 +569,6 @@ begin
   vga_b <= blue(7 downto 0);
   vga_vsync <= vsync;
   vga_blank_N <= nBlank;
-
 
   -- "general purpose" address generator;
   Inst_Address_Generator: Address_Generator PORT MAP(

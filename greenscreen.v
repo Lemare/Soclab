@@ -45,9 +45,9 @@ module greenscreen(
 	output		      [7:0]		VGA_B,
 	output		           		VGA_BLANK_N,
 	output		           		VGA_CLK,
-	output 		     [7:0]		VGA_G,
-	output		           		VGA_HS,
-	output		      [7:0]		VGA_R,
+	output 		      [7:0]		VGA_G,
+	output		            		VGA_HS,
+	output		       [7:0]		VGA_R,
 	output		          		VGA_SYNC_N,
 	output		          		VGA_VS,
 
@@ -101,7 +101,9 @@ module greenscreen(
   output      [6:0]  HEX5
 	);
 
+
 	wire [7:0] red_cam, green_cam, blue_cam;
+	wire VGA_HS_cam, VGA_VS_cam, VGA_BLANK_N_cam, VGA_SYNC_N_cam, VGA_CLK_cam;
 
 	wire clock;
 
@@ -115,6 +117,11 @@ module greenscreen(
 									.vga_r(red_cam),
 									.vga_b(blue_cam),
 									.vga_g(green_cam),
+									.vga_hsync(VGA_HS_cam),
+									.vga_vsync(VGA_VS_cam),
+									.vga_blank_N(VGA_BLANK_N_cam),
+									.vga_sync_N(VGA_SYNC_N_cam),
+									.vga_CLK(VGA_CLK_cam),
 
 									.ov7670_pclk(ov7670_pclk),
 									.ov7670_xclk(ov7670_xclk),
@@ -126,22 +133,72 @@ module greenscreen(
 									.ov7670_pwdn(ov7670_pwdn),
 									.ov7670_reset(ov7670_reset));
 
+wire [7:0] red_pic, green_pic, blue_pic;
+wire VGA_HS_pic, VGA_VS_pic, VGA_BLANK_N_pic, VGA_SYNC_N_pic, VGA_CLK_pic;
 
  display1 display(.CLOCK50(CLOCK_50),
-									.clock(clock),
+									.clock(VGA_CLK_cam),
 									.reset(!KEY[0]),
-									.VGA_R(VGA_R),
-									.VGA_G(VGA_G),
-									.VGA_B(VGA_B),
-									.VGA_HS(VGA_HS),
-									.VGA_VS(VGA_VS),
-									.VGA_BLANK_N(VGA_BLANK_N),
-									.VGA_SYNC_N(VGA_SYNC_N),
-									.VGA_CLOCK(VGA_CLK),
+									.VGA_R(red_pic),
+									.VGA_G(green_pic),
+									.VGA_B(blue_pic),
+									.VGA_HS(VGA_HS_pic),
+									.VGA_VS(VGA_VS_pic),
+									.VGA_BLANK_N(VGA_BLANK_N_pic),
+									.VGA_SYNC_N(VGA_SYNC_N_pic),
+									.VGA_CLOCK(VGA_CLK_pic),
 									.CAM_RED(red_cam),
 									.CAM_BLUE(blue_cam),
 									.CAM_GREEN(green_cam),
 									.knop(SW[1]));
+
+reg VGA_BLANK_N_out, VGA_SYNC_N_out, VGA_CLK_out, VGA_HS_out, VGA_VS_out;
+wire [7:0] VGA_CB, VGA_Y, VGA_CR;
+reg [7:0] VGA_R_out, VGA_G_out, VGA_B_out;
+assign VGA_R = VGA_R_out;
+assign VGA_B = VGA_B_out;
+assign VGA_G = VGA_G_out;
+assign VGA_BLANK_N = VGA_BLANK_N_cam;
+assign VGA_SYNC_N = VGA_SYNC_N_cam;
+assign VGA_CLK = VGA_CLK_cam;
+assign VGA_HS = VGA_HS_cam;
+assign VGA_VS = VGA_VS_cam;
+
+assign VGA_Y = 16 + (((red_cam<<6) + (red_cam<<1) + (green_cam<<7) + green_cam + (blue_cam<<4) + (blue_cam<<3) + blue_cam)>>8);
+
+assign VGA_CB = 128 +((-((red_cam<<5)+(red_cam<<2) + (red_cam << 1))-((green_cam<<6)+(green_cam<<3)+(green_cam << 1)) + (blue_cam <<7)-(blue_cam<<4))>>8);
+
+assign VGA_CR = 128 + (((red_cam<<7) - (red_cam<<4) - ((green_cam<<6) + (green_cam<<5) - (green_cam<<1)) - ((blue_cam<<4) + (blue_cam<<1)))>>8);
+
+
+reg [7:0] desired_Y, desired_CR, desired_CB;
+
+always@(posedge CLOCK_50)begin
+	if(!KEY[0])begin
+	end else begin
+		if(!KEY[3])begin
+			if(SW[8])begin
+				desired_Y = SW[7:0];
+			end else if(SW[9]) begin
+				desired_CB = SW[7:0];
+			end else begin
+				desired_CR = SW[7:0];
+			end
+		end
+	end
+end
+
+always@(posedge CLOCK_50) begin
+	if (VGA_CB <= desired_CB & VGA_CR <= desired_CR) begin
+		VGA_R_out = red_cam;
+		VGA_B_out = blue_cam;
+		VGA_G_out = green_cam;
+	end else begin
+		VGA_R_out = red_pic;
+		VGA_B_out = blue_pic;
+		VGA_G_out = green_pic;
+	end
+end
 
 /*video_in video_in1(	.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5),
 											.AUD_ADCDAT(AUD_ADCDAT), .AUD_ADCLRCK(AUD_ADCLRCK), .AUD_BCLK(AUD_BCLK),
@@ -489,14 +546,14 @@ module onboard_controller(clock, reset, display_col, display_row, visible, hsync
 
 	// 72 Hz 800 x 600 VGA - 50MHz clock
 
-	parameter HOR_FIELD = 1279;
-	parameter HOR_STR_SYNC = 1327;
-	parameter HOR_STP_SYNC = 1439;
-	parameter HOR_TOTAL = 1687;
-	parameter VER_FIELD = 1023;
-	parameter VER_STR_SYNC = 1024;
-	parameter VER_STP_SYNC = 1027;
-	parameter VER_TOTAL= 1065;
+	parameter HOR_FIELD = 639;
+	parameter HOR_STR_SYNC = 655;
+	parameter HOR_STP_SYNC = 751;
+	parameter HOR_TOTAL = 799;
+	parameter VER_FIELD = 479;
+	parameter VER_STR_SYNC = 490;
+	parameter VER_STP_SYNC = 492;
+	parameter VER_TOTAL= 523;
 
 
 	input clock;
@@ -579,7 +636,7 @@ module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
 	output [7:0] VGA_R, VGA_G, VGA_B;
 
 	output VGA_CLOCK;
-	output reg VGA_HS, VGA_VS;
+	output VGA_HS, VGA_VS, VGA_SYNC_N, VGA_BLANK_N;
 
 
 	reg [7:0] red, green, blue;
@@ -589,12 +646,10 @@ module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
 	assign VGA_G = green;
 	assign VGA_B = blue;
 	// add one additional clock cycle to compensate for videoDAC delay
-	always @(posedge clock) VGA_HS = hsync;
-	always @(posedge clock) VGA_VS = vsync;
-	always @ ( posedge clock) begin VGA_BLANK_N = hsync & vsync;
+	assign VGA_HS = hsync;
+	assign VGA_VS = vsync;
+	assign VGA_BLANK_N = hsync & vsync;
 	assign VGA_SYNC_N = 1'b0;
-
-	end
 
 	assign VGA_CLOCK = clock;
 
@@ -639,10 +694,10 @@ module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
 				end
 			  else begin*/
 					//red <= {red_img, 3'b0}; green = {green_img, 3'b0}; blue = {blue_img, 3'b0};
-					red = 255; blue = 0; green = 0;
+					red = 255; blue = 100; green = 0;
 			//	end
 			end else begin
-				red = 0; green = 0; blue = 0;
+				red = 255; blue = 0; green = 0;
 			end
 		end
 	end

@@ -4,6 +4,18 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "VGA_B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_B[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_B[2]",
+					"strict" : false
+				},
+				{
 					"name" : "VGA_B[3]",
 					"strict" : false
 				},
@@ -21,6 +33,22 @@
 				},
 				{
 					"name" : "VGA_B[7]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_BLANK_N",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_G[2]",
 					"strict" : false
 				},
 				{
@@ -45,6 +73,18 @@
 				},
 				{
 					"name" : "VGA_HS",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[0]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[1]",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_R[2]",
 					"strict" : false
 				},
 				{
@@ -80,11 +120,99 @@
 					"strict" : false
 				},
 				{
+					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
+					"name" : "SW[6]",
+					"strict" : false
+				},
+				{
 					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
+					"name" : "SW[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[9]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[8]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[0]",
+					"strict" : false
+				},
+				{
 					"name" : "SW[7]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[5]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_pclk",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_vsync",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_href",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[5]",
+					"strict" : false
+				},
+				{
+					"name" : "ov7670_data[6]",
 					"strict" : false
 				}
 			]
