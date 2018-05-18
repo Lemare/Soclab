@@ -2,356 +2,516 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1100mV 85C Model Setup 'clk_vga'
-Slack : -8.772
-TNS   : -201.639
+Type  : Slow 1100mV 85C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -6.151
+TNS   : -521.791
 
-Type  : Slow 1100mV 85C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : -8.032
-TNS   : -15305.544
+Type  : Slow 1100mV 85C Model Setup 'TD_CLK27'
+Slack : -5.777
+TNS   : -900.654
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -5.746
-TNS   : -121.861
+Slack : -5.260
+TNS   : -141.430
 
-Type  : Slow 1100mV 85C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 4.668
+Type  : Slow 1100mV 85C Model Setup 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -2.638
+TNS   : -49.976
+
+Type  : Slow 1100mV 85C Model Setup 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : -2.539
+TNS   : -134.255
+
+Type  : Slow 1100mV 85C Model Setup 'TD_HS'
+Slack : -0.638
+TNS   : -5.129
+
+Type  : Slow 1100mV 85C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 52.380
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 6.172
+Type  : Slow 1100mV 85C Model Hold 'TD_CLK27'
+Slack : -0.486
+TNS   : -10.051
+
+Type  : Slow 1100mV 85C Model Hold 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 0.301
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Setup 'altera_reserved_tck'
-Slack : 10.300
+Type  : Slow 1100mV 85C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.311
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Hold 'altera_reserved_tck'
-Slack : 0.156
+Type  : Slow 1100mV 85C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.313
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.287
+Type  : Slow 1100mV 85C Model Hold 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : 0.375
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.295
+Type  : Slow 1100mV 85C Model Hold 'TD_HS'
+Slack : 0.379
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.360
+Slack : 0.400
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.363
+Type  : Slow 1100mV 85C Model Recovery 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -8.293
+TNS   : -157.513
+
+Type  : Slow 1100mV 85C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -6.877
+TNS   : -2581.204
+
+Type  : Slow 1100mV 85C Model Recovery 'CLOCK_50'
+Slack : -5.853
+TNS   : -213.738
+
+Type  : Slow 1100mV 85C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -5.847
+TNS   : -99.342
+
+Type  : Slow 1100mV 85C Model Recovery 'TD_CLK27'
+Slack : -4.422
+TNS   : -2140.080
+
+Type  : Slow 1100mV 85C Model Removal 'TD_CLK27'
+Slack : 0.561
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Hold 'clk_vga'
-Slack : 3.855
+Type  : Slow 1100mV 85C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 1.695
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Recovery 'altera_reserved_tck'
-Slack : 36.576
+Type  : Slow 1100mV 85C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 1.766
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Recovery 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 37.206
+Type  : Slow 1100mV 85C Model Removal 'CLOCK_50'
+Slack : 2.476
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Removal 'altera_reserved_tck'
-Slack : 0.444
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Removal 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 1.667
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
-Slack : 1.666
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 4.277
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 8.781
+Type  : Slow 1100mV 85C Model Removal 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 6.712
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
-Slack : 8.885
+Slack : -1.010
+TNS   : -43.805
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'TD_HS'
+Slack : -0.425
+TNS   : -8.965
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : -0.394
+TNS   : -37.444
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -0.394
+TNS   : -12.216
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 0.555
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
-Slack : 18.488
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 3.771
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 18.753
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'TD_CLK27'
+Slack : 17.102
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Setup 'clk_vga'
-Slack : -8.488
-TNS   : -197.625
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 26.533
+TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : -7.977
-TNS   : -14837.677
+Type  : Slow 1100mV 0C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -5.977
+TNS   : -505.249
+
+Type  : Slow 1100mV 0C Model Setup 'TD_CLK27'
+Slack : -5.736
+TNS   : -835.882
 
 Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -5.583
-TNS   : -117.603
+Slack : -5.240
+TNS   : -136.318
 
-Type  : Slow 1100mV 0C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 4.919
+Type  : Slow 1100mV 0C Model Setup 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : -2.554
+TNS   : -129.968
+
+Type  : Slow 1100mV 0C Model Setup 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -2.521
+TNS   : -47.567
+
+Type  : Slow 1100mV 0C Model Setup 'TD_HS'
+Slack : -0.717
+TNS   : -5.513
+
+Type  : Slow 1100mV 0C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 52.410
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 6.162
+Type  : Slow 1100mV 0C Model Hold 'TD_CLK27'
+Slack : -0.644
+TNS   : -30.245
+
+Type  : Slow 1100mV 0C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.294
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Setup 'altera_reserved_tck'
-Slack : 10.440
+Type  : Slow 1100mV 0C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.295
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Hold 'altera_reserved_tck'
-Slack : 0.142
+Type  : Slow 1100mV 0C Model Hold 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 0.358
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.268
+Type  : Slow 1100mV 0C Model Hold 'TD_HS'
+Slack : 0.360
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.277
-TNS   : 0.000
-
-Type  : Slow 1100mV 0C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.365
+Type  : Slow 1100mV 0C Model Hold 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : 0.383
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 0.376
+Slack : 0.407
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Hold 'clk_vga'
-Slack : 3.622
+Type  : Slow 1100mV 0C Model Recovery 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -8.102
+TNS   : -153.889
+
+Type  : Slow 1100mV 0C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -6.601
+TNS   : -2485.760
+
+Type  : Slow 1100mV 0C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -5.610
+TNS   : -95.319
+
+Type  : Slow 1100mV 0C Model Recovery 'CLOCK_50'
+Slack : -5.603
+TNS   : -203.927
+
+Type  : Slow 1100mV 0C Model Recovery 'TD_CLK27'
+Slack : -4.371
+TNS   : -2055.212
+
+Type  : Slow 1100mV 0C Model Removal 'TD_CLK27'
+Slack : 0.505
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Recovery 'altera_reserved_tck'
-Slack : 36.741
+Type  : Slow 1100mV 0C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 1.498
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Recovery 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 37.303
+Type  : Slow 1100mV 0C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 1.580
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Removal 'altera_reserved_tck'
-Slack : 0.393
+Type  : Slow 1100mV 0C Model Removal 'CLOCK_50'
+Slack : 2.273
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Removal 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 1.582
-TNS   : 0.000
-
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
-Slack : 1.666
-TNS   : 0.000
-
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 4.222
-TNS   : 0.000
-
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 8.765
+Type  : Slow 1100mV 0C Model Removal 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 6.572
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
-Slack : 8.922
+Slack : -1.064
+TNS   : -40.236
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'TD_HS'
+Slack : -0.403
+TNS   : -8.712
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : -0.394
+TNS   : -36.958
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -0.394
+TNS   : -11.461
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 0.555
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
-Slack : 18.488
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 3.748
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 18.733
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'TD_CLK27'
+Slack : 17.039
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Setup 'clk_vga'
-Slack : -5.276
-TNS   : -124.812
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 26.475
+TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : -0.199
-TNS   : -5.487
+Type  : Fast 1100mV 85C Model Setup 'TD_CLK27'
+Slack : -4.941
+TNS   : -636.434
 
 Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
-Slack : 1.146
+Slack : -4.368
+TNS   : -56.050
+
+Type  : Fast 1100mV 85C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -4.098
+TNS   : -326.757
+
+Type  : Fast 1100mV 85C Model Setup 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -1.284
+TNS   : -24.383
+
+Type  : Fast 1100mV 85C Model Setup 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : -1.181
+TNS   : -59.783
+
+Type  : Fast 1100mV 85C Model Setup 'TD_HS'
+Slack : 0.083
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 6.858
+Type  : Fast 1100mV 85C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 53.331
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 7.770
+Type  : Fast 1100mV 85C Model Hold 'TD_CLK27'
+Slack : -0.323
+TNS   : -2.610
+
+Type  : Fast 1100mV 85C Model Hold 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 0.130
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Setup 'altera_reserved_tck'
-Slack : 12.357
+Type  : Fast 1100mV 85C Model Hold 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : 0.136
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Hold 'altera_reserved_tck'
-Slack : 0.041
-TNS   : 0.000
-
-Type  : Fast 1100mV 85C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.167
-TNS   : 0.000
-
-Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.177
-TNS   : 0.000
-
-Type  : Fast 1100mV 85C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.179
-TNS   : 0.000
-
-Type  : Fast 1100mV 85C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
+Type  : Fast 1100mV 85C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
 Slack : 0.180
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Hold 'clk_vga'
-Slack : 1.810
+Type  : Fast 1100mV 85C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.184
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Recovery 'altera_reserved_tck'
-Slack : 37.583
+Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
+Slack : 0.193
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Recovery 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 38.284
+Type  : Fast 1100mV 85C Model Hold 'TD_HS'
+Slack : 0.213
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Removal 'altera_reserved_tck'
-Slack : 0.127
+Type  : Fast 1100mV 85C Model Recovery 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -5.086
+TNS   : -96.612
+
+Type  : Fast 1100mV 85C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -4.400
+TNS   : -1654.436
+
+Type  : Fast 1100mV 85C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -3.893
+TNS   : -66.162
+
+Type  : Fast 1100mV 85C Model Recovery 'TD_CLK27'
+Slack : -3.102
+TNS   : -1390.189
+
+Type  : Fast 1100mV 85C Model Recovery 'CLOCK_50'
+Slack : -2.892
+TNS   : -103.863
+
+Type  : Fast 1100mV 85C Model Removal 'TD_CLK27'
+Slack : 0.229
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Removal 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.947
+Type  : Fast 1100mV 85C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.996
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
-Slack : 1.666
+Type  : Fast 1100mV 85C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 1.177
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 4.539
+Type  : Fast 1100mV 85C Model Removal 'CLOCK_50'
+Slack : 1.342
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Removal 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 3.967
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
-Slack : 8.482
+Slack : -1.051
+TNS   : -30.001
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'TD_HS'
+Slack : -0.580
+TNS   : -9.734
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : 0.063
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 8.894
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 0.098
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
-Slack : 18.165
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 0.555
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 18.878
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 3.882
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Setup 'clk_vga'
-Slack : -4.913
-TNS   : -117.533
-
-Type  : Fast 1100mV 0C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.565
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'TD_CLK27'
+Slack : 16.995
 TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 26.771
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'TD_CLK27'
+Slack : -4.363
+TNS   : -552.294
 
 Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
-Slack : 1.962
+Slack : -3.825
+TNS   : -47.402
+
+Type  : Fast 1100mV 0C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -3.749
+TNS   : -301.428
+
+Type  : Fast 1100mV 0C Model Setup 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -1.109
+TNS   : -21.024
+
+Type  : Fast 1100mV 0C Model Setup 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : -1.035
+TNS   : -50.850
+
+Type  : Fast 1100mV 0C Model Setup 'TD_HS'
+Slack : 0.099
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 7.176
+Type  : Fast 1100mV 0C Model Setup 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 53.403
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Setup 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 7.953
+Type  : Fast 1100mV 0C Model Hold 'TD_CLK27'
+Slack : -0.438
+TNS   : -13.016
+
+Type  : Fast 1100mV 0C Model Hold 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : 0.124
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Setup 'altera_reserved_tck'
-Slack : 12.535
+Type  : Fast 1100mV 0C Model Hold 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 0.131
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Hold 'altera_reserved_tck'
-Slack : 0.028
+Type  : Fast 1100mV 0C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.155
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.152
-TNS   : 0.000
-
-Type  : Fast 1100mV 0C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.161
-TNS   : 0.000
-
-Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
+Type  : Fast 1100mV 0C Model Hold 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
 Slack : 0.167
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Hold 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.170
+Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
+Slack : 0.184
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Hold 'clk_vga'
-Slack : 1.496
+Type  : Fast 1100mV 0C Model Hold 'TD_HS'
+Slack : 0.194
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Recovery 'altera_reserved_tck'
-Slack : 37.851
+Type  : Fast 1100mV 0C Model Recovery 'VGA_Ctrl:u9|oVGA_HS'
+Slack : -4.603
+TNS   : -87.439
+
+Type  : Fast 1100mV 0C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -4.006
+TNS   : -1507.254
+
+Type  : Fast 1100mV 0C Model Recovery 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : -3.540
+TNS   : -60.158
+
+Type  : Fast 1100mV 0C Model Recovery 'TD_CLK27'
+Slack : -2.943
+TNS   : -1265.578
+
+Type  : Fast 1100mV 0C Model Recovery 'CLOCK_50'
+Slack : -2.730
+TNS   : -98.297
+
+Type  : Fast 1100mV 0C Model Removal 'TD_CLK27'
+Slack : 0.093
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Recovery 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 38.459
+Type  : Fast 1100mV 0C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.762
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Removal 'altera_reserved_tck'
-Slack : 0.105
+Type  : Fast 1100mV 0C Model Removal 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 0.939
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Removal 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 0.858
+Type  : Fast 1100mV 0C Model Removal 'CLOCK_50'
+Slack : 1.224
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]'
-Slack : 1.666
-TNS   : 0.000
-
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk'
-Slack : 4.532
+Type  : Fast 1100mV 0C Model Removal 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 3.629
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
-Slack : 8.438
+Slack : -1.070
+TNS   : -35.695
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'TD_HS'
+Slack : -0.603
+TNS   : -10.445
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'I2C_AV_Config:u1|mI2C_CTRL_CLK'
+Slack : 0.081
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll3~PLL_OUTPUT_COUNTER|divclk'
-Slack : 8.891
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'VGA_Ctrl:u9|oVGA_HS'
+Slack : 0.115
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
-Slack : 18.156
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
+Slack : 0.555
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'camera|Inst_four_clocks_pll|altpll_component|auto_generated|generic_pll2~PLL_OUTPUT_COUNTER|divclk'
-Slack : 18.881
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 3.881
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'TD_CLK27'
+Slack : 16.951
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'u6|sdram_pll1|sdram_pll_inst|altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER|divclk'
+Slack : 26.762
 TNS   : 0.000
 
 ------------------------------------------------------------

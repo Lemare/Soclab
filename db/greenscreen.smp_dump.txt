@@ -1,33 +1,6 @@
 
-State Machine - |greenscreen|digital_cam_impl4:camera|state_current
-Name state_current.S7_NORMAL_VIDEO_MODE state_current.S6_DONE_ED state_current.S5_PROCESS_ED state_current.S4_RESET_ED state_current.S3_DONE_BW state_current.S2_PROCESS_BW state_current.S1_RESET_BW state_current.S0_RESET 
-state_current.S0_RESET 0 0 0 0 0 0 0 0 
-state_current.S1_RESET_BW 0 0 0 0 0 0 1 1 
-state_current.S2_PROCESS_BW 0 0 0 0 0 1 0 1 
-state_current.S3_DONE_BW 0 0 0 0 1 0 0 1 
-state_current.S4_RESET_ED 0 0 0 1 0 0 0 1 
-state_current.S5_PROCESS_ED 0 0 1 0 0 0 0 1 
-state_current.S6_DONE_ED 0 1 0 0 0 0 0 1 
-state_current.S7_NORMAL_VIDEO_MODE 1 0 0 0 0 0 0 1 
-
-State Machine - |greenscreen|digital_cam_impl4:camera|debounce:Inst_debounce_normal_or_edgedetect|state_reg
-Name state_reg.wait0_3 state_reg.wait0_2 state_reg.wait0_1 state_reg.one state_reg.wait1_3 state_reg.wait1_2 state_reg.wait1_1 state_reg.zero 
-state_reg.zero 0 0 0 0 0 0 0 0 
-state_reg.wait1_1 0 0 0 0 0 0 1 1 
-state_reg.wait1_2 0 0 0 0 0 1 0 1 
-state_reg.wait1_3 0 0 0 0 1 0 0 1 
-state_reg.one 0 0 0 1 0 0 0 1 
-state_reg.wait0_1 0 0 1 0 0 0 0 1 
-state_reg.wait0_2 0 1 0 0 0 0 0 1 
-state_reg.wait0_3 1 0 0 0 0 0 0 1 
-
-State Machine - |greenscreen|digital_cam_impl4:camera|debounce:Inst_debounce_resend|state_reg
-Name state_reg.wait0_3 state_reg.wait0_2 state_reg.wait0_1 state_reg.one state_reg.wait1_3 state_reg.wait1_2 state_reg.wait1_1 state_reg.zero 
-state_reg.zero 0 0 0 0 0 0 0 0 
-state_reg.wait1_1 0 0 0 0 0 0 1 1 
-state_reg.wait1_2 0 0 0 0 0 1 0 1 
-state_reg.wait1_3 0 0 0 0 1 0 0 1 
-state_reg.one 0 0 0 1 0 0 0 1 
-state_reg.wait0_1 0 0 1 0 0 0 0 1 
-state_reg.wait0_2 0 1 0 0 0 0 0 1 
-state_reg.wait0_3 1 0 0 0 0 0 0 1 
+State Machine - |DE1_SoC_TV|I2C_AV_Config:u1|mSetup_ST
+Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001 
+mSetup_ST.0000 0 0 0 
+mSetup_ST.0001 1 0 1 
+mSetup_ST.0010 1 1 0 

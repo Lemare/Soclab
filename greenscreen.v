@@ -107,10 +107,9 @@ module greenscreen(
 
 	wire clock;
 
-	PLL100 pll(CLOCK_50, !KEY[0], clock);
 
 
-	digital_cam_impl4 camera(.clk_50(CLOCK_50),
+	/**digital_cam_impl4 camera(.clk_50(CLOCK_50),
 									.slide_sw_resend_reg_values(SW[7]),
 									.slide_sw_NORMAL_OR_EDGEDETECT(SW[6]),
 									.btn_RESET(!KEY[0]),
@@ -131,12 +130,12 @@ module greenscreen(
 									.ov7670_sioc(ov7670_sioc),
 									.ov7670_siod(ov7670_siod),
 									.ov7670_pwdn(ov7670_pwdn),
-									.ov7670_reset(ov7670_reset));
+									.ov7670_reset(ov7670_reset)); */
 
 wire [7:0] red_pic, green_pic, blue_pic;
 wire VGA_HS_pic, VGA_VS_pic, VGA_BLANK_N_pic, VGA_SYNC_N_pic, VGA_CLK_pic;
 
- display1 display(.CLOCK50(CLOCK_50),
+ /*display1 display(.CLOCK50(CLOCK_50),
 									.clock(VGA_CLK_cam),
 									.reset(!KEY[0]),
 									.VGA_R(red_pic),
@@ -150,57 +149,27 @@ wire VGA_HS_pic, VGA_VS_pic, VGA_BLANK_N_pic, VGA_SYNC_N_pic, VGA_CLK_pic;
 									.CAM_RED(red_cam),
 									.CAM_BLUE(blue_cam),
 									.CAM_GREEN(green_cam),
-									.knop(SW[1]));
+									.knop(SW[1]));*/
 
 reg VGA_BLANK_N_out, VGA_SYNC_N_out, VGA_CLK_out, VGA_HS_out, VGA_VS_out;
 wire [7:0] VGA_CB, VGA_Y, VGA_CR;
 reg [7:0] VGA_R_out, VGA_G_out, VGA_B_out;
-assign VGA_R = VGA_R_out;
-assign VGA_B = VGA_B_out;
-assign VGA_G = VGA_G_out;
-assign VGA_BLANK_N = VGA_BLANK_N_cam;
-assign VGA_SYNC_N = VGA_SYNC_N_cam;
-assign VGA_CLK = VGA_CLK_cam;
-assign VGA_HS = VGA_HS_cam;
-assign VGA_VS = VGA_VS_cam;
-
-assign VGA_Y = 16 + (((red_cam<<6) + (red_cam<<1) + (green_cam<<7) + green_cam + (blue_cam<<4) + (blue_cam<<3) + blue_cam)>>8);
-
-assign VGA_CB = 128 +((-((red_cam<<5)+(red_cam<<2) + (red_cam << 1))-((green_cam<<6)+(green_cam<<3)+(green_cam << 1)) + (blue_cam <<7)-(blue_cam<<4))>>8);
-
-assign VGA_CR = 128 + (((red_cam<<7) - (red_cam<<4) - ((green_cam<<6) + (green_cam<<5) - (green_cam<<1)) - ((blue_cam<<4) + (blue_cam<<1)))>>8);
+assign VGA_R = red_cam;
+assign VGA_B = blue_cam;
+assign VGA_G = green_cam;
 
 
-reg [7:0] desired_Y, desired_CR, desired_CB;
 
-always@(posedge CLOCK_50)begin
-	if(!KEY[0])begin
-	end else begin
-		if(!KEY[3])begin
-			if(SW[8])begin
-				desired_Y = SW[7:0];
-			end else if(SW[9]) begin
-				desired_CB = SW[7:0];
-			end else begin
-				desired_CR = SW[7:0];
-			end
-		end
-	end
-end
 
-always@(posedge CLOCK_50) begin
-	if (VGA_CB >= desired_CB & VGA_CR >= desired_CR) begin
-		VGA_R_out = red_cam;
-		VGA_B_out = blue_cam;
-		VGA_G_out = green_cam;
-	end else begin
-		VGA_R_out = red_pic;
-		VGA_B_out = blue_pic;
-		VGA_G_out = green_pic;
-	end
-end
 
-/*video_in video_in1(	.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5),
+/*assign VGA_Y = 16+(((red_cam<<6)+(red_cam<<1)+(green_cam<<7)+green_cam+(blue_cam<4)+(blue_cam<<3)+blue_cam)>>8);
+assign VGA_CB = 128 + ((-((red_cam<<5)+(red_cam<<2)+(red_cam<<1))-((green_cam<<6)+(green_cam<3)+(green_cam<1))+(blue_cam<<7)-(blue_cam<<4))>>8);
+assign VGA_CR = 128 + (((red_cam<<7)-(red_cam<<4)-((green_cam<<6)+(green_cam<<5)-(green_cam<<1))-((blue_cam<<4)+(blue_cam<<1)))>>8);
+*/
+
+
+
+video_in video_in1(	.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5),
 											.AUD_ADCDAT(AUD_ADCDAT), .AUD_ADCLRCK(AUD_ADCLRCK), .AUD_BCLK(AUD_BCLK),
 											.AUD_DACDAT(AUD_DACDAT), .AUD_DACLRCK(AUD_DACLRCK), .AUD_XCK(AUD_XCK),
 											.TD_CLK27(TD_CLK27), .TD_DATA(TD_DATA), .TD_HS(TD_HS),
@@ -211,14 +180,14 @@ end
 											.DRAM_UDQM(DRAM_UDQM), .DRAM_WE_N(DRAM_WE_N), .FPGA_I2C_SCLK(FPGA_I2C_SCLK),
 											.FPGA_I2C_SDAT(FPGA_I2C_SDAT), .mRed_out(mRed_out), .mGreen_out(mGreen_out),
 											.mBlue_out(mBlue_out), .VGA_X_out(VGA_X_out), .VGA_Y_out(VGA_Y_out),
-											.VGA_B(vga_b_vin), .VGA_BLANK_N(vga_blank_vin), .VGA_CLK(vga_clk_vin),
-											.VGA_G(vga_g_vin), .VGA_HS(vga_hs_vin),	.VGA_R(vga_r_vin),
-											.VGA_SYNC_N(vga_sync_vin), .VGA_VS(vga_vs_vin) );*/
+											.VGA_B(blue_cam), .VGA_BLANK_N(VGA_BLANK_N), .VGA_CLK(VGA_CLK),
+											.VGA_G(green_cam), .VGA_HS(VGA_HS),	.VGA_R(red_cam),
+											.VGA_SYNC_N(VGA_SYNC_N), .VGA_VS(VGA_VS) );
 
 
 endmodule
 
-/*module video_in (
+module video_in (
 			///////// HEX0 /////////
       output      [6:0]  HEX0,
 
@@ -494,7 +463,15 @@ endmodule
 	wire [9:0] vga_r10;
 	wire [9:0] vga_g10;
 	wire [9:0] vga_b10;
-	assign VGA_R = vga_r10[9:2];
+	reg [7:0] VGA_R_out;
+	always @ ( posedge CLOCK_50 ) begin
+		if(!KEY[1]) begin
+				VGA_R_out = 255;
+		end else begin
+				VGA_R_out = vga_r10[9:2];
+		end
+	end
+	assign VGA_R = 240;
 	assign VGA_G = vga_g10[9:2];
 	assign VGA_B = vga_b10[9:2];
 
@@ -518,6 +495,9 @@ endmodule
 								.iCLK(TD_CLK27),
 								.iRST_N(DLY2)	);
 
+
+
+
 		//	Line buffer, delay one line
 		Line_Buffer u10	(	.aclr(!DLY0),
 						.clken(VGA_Read),
@@ -540,7 +520,7 @@ endmodule
 								//	I2C Side
 								.I2C_SCLK(FPGA_I2C_SCLK),
 								.I2C_SDAT(FPGA_I2C_SDAT)	);
-endmodule*/
+endmodule
 
 module onboard_controller(clock, reset, display_col, display_row, visible, hsync, vsync);
 
@@ -689,15 +669,13 @@ module display1(CLOCK50, clock, reset, VGA_R, VGA_G, VGA_B,
 			red = 0; green = 0; blue = 0;
 		end else begin
 			if (visible) begin
-				/*if(knop) begin
-					 red = CAM_RED; green = CAM_GREEN; blue = CAM_BLUE;
-				end
-			  else begin*/
+
+					red = 100; blue = 255; green = 200;
 					//red <= {red_img, 3'b0}; green = {green_img, 3'b0}; blue = {blue_img, 3'b0};
-					red = 255; blue = 100; green = 0;
-			//	end
+
+
 			end else begin
-				red = 255; blue = 0; green = 0;
+				red = 100; blue = 255; green = 200;
 			end
 		end
 	end

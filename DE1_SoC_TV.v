@@ -5,8 +5,8 @@
 // Permission:
 //
 //   Terasic grants permission to use and modify this code for use
-//   in synthesis for all Terasic Development Boards and Altera Development 
-//   Kits made by Terasic.  Other use of this code, including the selling 
+//   in synthesis for all Terasic Development Boards and Altera Development
+//   Kits made by Terasic.  Other use of this code, including the selling
 //   ,duplication, or modification of any portion is strictly prohibited.
 //
 // Disclaimer:
@@ -15,16 +15,16 @@
 //   which illustrates how these types of functions can be implemented.
 //   It is the user's responsibility to verify their design for
 //   consistency and functionality through the use of formal
-//   verification methods.  Terasic provides no warranty regarding the use 
+//   verification methods.  Terasic provides no warranty regarding the use
 //   or functionality of this code.
 //
 // ============================================================================
-//           
+//
 //  Terasic Technologies Inc
 //  9F., No.176, Sec.2, Gongdao 5th Rd, East Dist, Hsinchu City, 30070. Taiwan
-//  
-//  
-//                     web: http://www.terasic.com/  
+//
+//
+//                     web: http://www.terasic.com/
 //                     email: support@terasic.com
 //
 // ============================================================================
@@ -84,7 +84,7 @@ module DE1_SoC_TV(
       ///////// GPIO /////////
       inout     [35:0]         GPIO_0,
       inout     [35:0]         GPIO_1,
- 
+
 
       ///////// HEX0 /////////
       output      [6:0]  HEX0,
@@ -260,7 +260,7 @@ wire            PAL;
 //=============================================================================
 
 
-//	All inout port turn to tri-state 
+//	All inout port turn to tri-state
 
 assign	AUD_ADCLRCK	=	AUD_DACLRCK;
 assign	GPIO_A	=	36'hzzzzzzzzz;
@@ -286,6 +286,24 @@ assign	Tmp3	=	Tmp1[8:2]+m3YCbCr[7:1];
 assign	Tmp4	=	Tmp2[8:2]+m3YCbCr[15:9];
 assign	m5YCbCr	=	{Tmp4,Tmp3};
 
+wire [14:0] q;
+
+assign red_img = {q[14:10], 3'b0};
+assign green_img = {q[9:5], 3'b0};
+assign blue_img = {q[4:0], 3'b0};
+
+
+wire [15:0] address;
+
+assign address[15:8] = 10;
+assign address[7:0] = 10;
+
+
+
+
+
+background background(.address(address), .wren(1'b0), .q(q));
+
 //	7 segment LUT
 SEG7_LUT_6 			u0	(	.oSEG0(HEX0),
 							.oSEG1(HEX1),
@@ -294,7 +312,7 @@ SEG7_LUT_6 			u0	(	.oSEG0(HEX0),
 							.oSEG4(HEX4),
 							.oSEG5(HEX5),
 							.iDIG(SW) );
-							
+
 //	TV Decoder Stable Check
 TD_Detect			u2	(	.oTD_Stable(TD_Stable),
 							.oNTSC(NTSC),
@@ -325,7 +343,7 @@ ITU_656_Decoder		u4	(	//	TV Decoder Input
 							.iCLK_27(TD_CLK27)	);
 
 //	For Down Sample 720 to 640
-DIV 				u5	(	.aclr(!DLY0),	
+DIV 				u5	(	.aclr(!DLY0),
 							.clock(TD_CLK27),
 							.denom(4'h9),
 							.numer(TV_X),
@@ -386,7 +404,7 @@ YUV422_to_444		u7	(	//	YUV 4:2:2 Input
 							.iCLK(TD_CLK27),
 							.iRST_N(DLY0));
 
-//	YCbCr 8-bit to RGB-10 bit 
+//	YCbCr 8-bit to RGB-10 bit
 YCbCr2RGB 			u8	(	//	Output Side
 							.Red(mRed),
 							.Green(mGreen),
@@ -405,9 +423,46 @@ YCbCr2RGB 			u8	(	//	Output Side
 wire [9:0] vga_r10;
 wire [9:0] vga_g10;
 wire [9:0] vga_b10;
-assign VGA_R = vga_r10[9:2];
-assign VGA_G = vga_g10[9:2];
-assign VGA_B = vga_b10[9:2];
+reg [7:0] VGA_R_out, VGA_G_out, VGA_B_out;
+reg [7:0] desired_Y, desired_CB, desired_CR;
+
+always @ ( * ) begin
+  if (!KEY[3]) begin
+    if (SW[8]) begin
+      desired_Y = SW[7:0];
+    end else if (SW[9]) begin
+      desired_CB = SW[7:0];
+    end else begin
+      desired_CR = SW[7:0];
+    end
+  end
+end
+
+always @ ( * ) begin
+  if(!KEY[1]) begin
+    VGA_R_out = 100;
+    VGA_G_out = 100;
+    VGA_B_out = 255;
+  end
+  else if(!KEY[2]) begin
+    VGA_R_out = red_img;
+    VGA_G_out = green_img;
+    VGA_B_out = blue_img;
+  end else begin
+    if(mY <= desired_Y & mCb <= desired_CB & mCr <= desired_CB) begin
+      VGA_R_out = vga_r10[9:2];
+      VGA_G_out = vga_g10[9:2];
+      VGA_B_out = vga_b10[9:2];
+    end else begin
+      VGA_R_out = 255;
+      VGA_G_out = 100;
+      VGA_B_out = 20;
+    end
+  end
+end
+assign VGA_R = VGA_R_out;
+assign VGA_G = VGA_G_out;
+assign VGA_B = VGA_B_out;
 
 VGA_Ctrl			u9	(	//	Host Side
 							.iRed(mRed),
@@ -457,6 +512,6 @@ I2C_AV_Config 	u1	(	//	Host Side
 						.iRST_N(KEY[0]),
 						//	I2C Side
 						.I2C_SCLK(FPGA_I2C_SCLK),
-						.I2C_SDAT(FPGA_I2C_SDAT)	);	
+						.I2C_SDAT(FPGA_I2C_SDAT)	);
 
 endmodule

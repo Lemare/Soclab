@@ -22,7 +22,7 @@ architecture Behavioral of VGA is
 
 
 signal Hcnt:STD_LOGIC_VECTOR(9 downto 0):="0000000000"; -- pour le comptage des colonnes
-signal Vcnt:STD_LOGIC_VECTOR(9 downto 0):="1000001000"; -- pour le comptage des lignes
+signal Vcnt:STD_LOGIC_VECTOR(9 downto 0):="0000000000"; -- pour le comptage des lignes
 signal video:STD_LOGIC;
 constant HM: integer :=799;  --la taille maximale considere 800 (horizontal)
 constant HD: integer :=640;  --la taille de l'ecran (horizontal)

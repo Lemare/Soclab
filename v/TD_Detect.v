@@ -1,4 +1,4 @@
-module TD_Detect(	
+module TD_Detect(
           oTD_Stable,
           oNTSC,
           oPAL,
@@ -17,8 +17,8 @@ reg			Pre_VS;
 reg	[7:0]	Stable_Cont;
 
 assign	oTD_Stable	=	NTSC || PAL;
-assign  oNTSC  = NTSC;
-assign  oPAL   = PAL;
+assign  oNTSC  = 1;
+assign  oPAL   = 0;
 
 always@(posedge iTD_HS or negedge iRST_N)
 	if(!iRST_N)
@@ -35,14 +35,14 @@ always@(posedge iTD_HS or negedge iRST_N)
 		  Stable_Cont	<=	Stable_Cont+1'b1;
 		else
 		  Stable_Cont	<=	0;
-		
+
 		if({Pre_VS,iTD_VS}==2'b01)
 		begin
 			if((Stable_Cont>=4 && Stable_Cont<=14))
 			  NTSC	<=	1'b1;
 			else
 			  NTSC	<=	1'b0;
-			
+
 			if((Stable_Cont>=8'h14 && Stable_Cont<=8'h1f))
 			  PAL	<=	1'b1;
 			else
