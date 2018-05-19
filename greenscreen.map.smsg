@@ -1,2 +1,1 @@
-Warning (10268): Verilog HDL information at greenscreen.v(601): always construct contains both blocking and non-blocking assignments File: Y:/Documents/greenscreen/greenscreen.v Line: 601
-Info (10281): Verilog HDL Declaration information at i2c_touch_config.v(36): object "INT_n" differs only in case from object "int_n" in the same scope File: Y:/Documents/greenscreen/i2c_touch_config.v Line: 36
+Warning (10268): Verilog HDL information at DE1_SoC_TV.v(438): always construct contains both blocking and non-blocking assignments File: E:/Pieter-Jan Buntinx/OneDrive - Universiteit Hasselt/Documents/School/3 ABA IIW ELO-ICT/SOCOE/Project Soclab/DE1_SoC_TV.v Line: 438

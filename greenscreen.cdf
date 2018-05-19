@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("Y:/Documents/greenscreen/") File("greenscreen.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("E:/Pieter-Jan Buntinx/OneDrive - Universiteit Hasselt/Documents/School/3 ABA IIW ELO-ICT/SOCOE/Project Soclab/") File("greenscreen.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

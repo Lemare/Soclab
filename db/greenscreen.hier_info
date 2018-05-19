@@ -12,7 +12,7 @@ AUD_XCK <= AUD_CTRL_CLK.DB_MAX_OUTPUT_PORT_TYPE
 CLOCK2_50 => ~NO_FANOUT~
 CLOCK3_50 => ~NO_FANOUT~
 CLOCK4_50 => ~NO_FANOUT~
-CLOCK_50 => CLOCK_50.IN2
+CLOCK_50 => CLOCK_50.IN3
 DRAM_ADDR[0] <= Sdram_Control_4Port:u6.SA
 DRAM_ADDR[1] <= Sdram_Control_4Port:u6.SA
 DRAM_ADDR[2] <= Sdram_Control_4Port:u6.SA
@@ -196,8 +196,8 @@ KEY[1] => VGA_B_out.OUTPUTSELECT
 KEY[1] => VGA_B_out.OUTPUTSELECT
 KEY[1] => VGA_B_out.OUTPUTSELECT
 KEY[1] => VGA_B_out.OUTPUTSELECT
-KEY[2] => ~NO_FANOUT~
-KEY[3] => ~NO_FANOUT~
+KEY[2] => always0.IN1
+KEY[3] => always0.IN1
 LEDR[0] <= <GND>
 LEDR[1] <= <GND>
 LEDR[2] <= <GND>
@@ -234,38 +234,38 @@ TD_DATA[7] => TD_DATA[7].IN1
 TD_HS => TD_HS.IN1
 TD_RESET_N <= <VCC>
 TD_VS => TD_VS.IN1
-VGA_B[0] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[1] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[2] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[3] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[4] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[5] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[6] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[7] <= VGA_B_out.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[0] <= VGA_B_out[0].DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[1] <= VGA_B_out[1].DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[2] <= VGA_B_out[2].DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[3] <= VGA_B_out[3].DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[4] <= VGA_B_out[4].DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[5] <= VGA_B_out[5].DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[6] <= VGA_B_out[6].DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[7] <= VGA_B_out[7].DB_MAX_OUTPUT_PORT_TYPE
 VGA_BLANK_N <= VGA_Ctrl:u9.oVGA_BLANK
 VGA_CLK <= VGA_Ctrl:u9.oVGA_CLOCK
-VGA_G[0] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[1] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[2] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[3] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[4] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[5] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[6] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[7] <= VGA_G_out.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[0] <= VGA_G_out[0].DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[1] <= VGA_G_out[1].DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[2] <= VGA_G_out[2].DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[3] <= VGA_G_out[3].DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[4] <= VGA_G_out[4].DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[5] <= VGA_G_out[5].DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[6] <= VGA_G_out[6].DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[7] <= VGA_G_out[7].DB_MAX_OUTPUT_PORT_TYPE
 VGA_HS <= VGA_Ctrl:u9.oVGA_HS
-VGA_R[0] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[1] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[2] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[3] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[4] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[5] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[6] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[7] <= VGA_R_out.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[0] <= VGA_R_out[0].DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[1] <= VGA_R_out[1].DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[2] <= VGA_R_out[2].DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[3] <= VGA_R_out[3].DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[4] <= VGA_R_out[4].DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[5] <= VGA_R_out[5].DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[6] <= VGA_R_out[6].DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[7] <= VGA_R_out[7].DB_MAX_OUTPUT_PORT_TYPE
 VGA_SYNC_N <= VGA_Ctrl:u9.oVGA_SYNC
 VGA_VS <= VGA_Ctrl:u9.oVGA_VS
 
 
-|DE1_SoC_TV|background:background
+|DE1_SoC_TV|background_memory:background_memory
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -316,7 +316,7 @@ q[13] <= altsyncram:altsyncram_component.q_a
 q[14] <= altsyncram:altsyncram_component.q_a
 
 
-|DE1_SoC_TV|background:background|altsyncram:altsyncram_component
+|DE1_SoC_TV|background_memory:background_memory|altsyncram:altsyncram_component
 wren_a => altsyncram_4ho1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -387,7 +387,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|DE1_SoC_TV|background:background|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated
+|DE1_SoC_TV|background_memory:background_memory|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -2221,7 +2221,7 @@ q_a[14] <= mux_bhb:mux2.result[14]
 wren_a => decode_dla:decode3.enable
 
 
-|DE1_SoC_TV|background:background|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated|decode_dla:decode3
+|DE1_SoC_TV|background_memory:background_memory|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated|decode_dla:decode3
 data[0] => w_anode838w[1].IN0
 data[0] => w_anode855w[1].IN1
 data[0] => w_anode865w[1].IN0
@@ -2264,7 +2264,7 @@ eq[6] <= w_anode905w[3].DB_MAX_OUTPUT_PORT_TYPE
 eq[7] <= w_anode915w[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|DE1_SoC_TV|background:background|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated|decode_61a:rden_decode
+|DE1_SoC_TV|background_memory:background_memory|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated|decode_61a:rden_decode
 data[0] => w_anode1010w[1].IN1
 data[0] => w_anode926w[1].IN0
 data[0] => w_anode944w[1].IN1
@@ -2299,7 +2299,7 @@ eq[6] <= w_anode999w[3].DB_MAX_OUTPUT_PORT_TYPE
 eq[7] <= w_anode1010w[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|DE1_SoC_TV|background:background|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated|mux_bhb:mux2
+|DE1_SoC_TV|background_memory:background_memory|altsyncram:altsyncram_component|altsyncram_4ho1:auto_generated|mux_bhb:mux2
 data[0] => l1_w0_n0_mux_dataout.IN1
 data[1] => l1_w1_n0_mux_dataout.IN1
 data[2] => l1_w2_n0_mux_dataout.IN1

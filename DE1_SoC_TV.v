@@ -295,14 +295,14 @@ assign blue_img = {q[4:0], 3'b0};
 
 wire [15:0] address;
 
-assign address[15:8] = 10;
-assign address[7:0] = 10;
+assign address[15:8] = VGA_X[7:0];
+assign address[7:0] = VGA_Y[7:0];
 
 
 
 
 
-background background(.address(address), .wren(1'b0), .q(q));
+background_memory background_memory(.address(address), .wren(1'b0), .q(q), .clock(CLOCK_50), .data(data));
 
 //	7 segment LUT
 SEG7_LUT_6 			u0	(	.oSEG0(HEX0),
@@ -424,9 +424,101 @@ wire [9:0] vga_r10;
 wire [9:0] vga_g10;
 wire [9:0] vga_b10;
 reg [7:0] VGA_R_out, VGA_G_out, VGA_B_out;
-reg [7:0] desired_Y, desired_CB, desired_CR;
+//reg [7:0] desired_Y, desired_CB, desired_CR;
+reg [7:0] l_r, l_g, l_b;
+reg [7:0] d_r, d_g, d_b;
+reg [9:0] picker_x;
+reg [8:0] picker_y;
+reg [18:0] counter;
+reg move_picker_pulse;
+parameter breedte_picker = 10;
+parameter breedte_kader_picker = 2;
 
-always @ ( * ) begin
+
+always @(posedge CLOCK_50) begin
+  if (!KEY[0]) begin
+    counter = 0;
+    picker_x = 100;
+    picker_y = 100;
+    move_picker_pulse <= 0;
+  end else begin
+    //clock divider
+    if (counter >= 500000) begin
+      counter <= 0;
+      move_picker_pulse <= 1;
+    end else begin
+      counter <= counter + 1;
+    end
+
+    if (SW[0]) begin //enable picker
+      if (VGA_X >= picker_x && VGA_X < picker_x + breedte_kader_picker
+            && VGA_Y >= picker_y && VGA_Y < picker_y + breedte_picker) begin
+        VGA_R_out = 0; VGA_G_out = 0; VGA_B_out = 0;
+      end
+      else if (VGA_X >= picker_x + breedte_picker - breedte_kader_picker && VGA_X < picker_x + breedte_picker
+                && VGA_Y >= picker_y && VGA_Y < picker_y + breedte_picker) begin
+        VGA_R_out = 0; VGA_G_out = 0; VGA_B_out = 0;
+      end
+      else if (VGA_Y >= picker_y && VGA_Y < picker_y + breedte_kader_picker
+              && VGA_X >= picker_x && VGA_X < picker_x + breedte_picker) begin
+        VGA_R_out = 0; VGA_G_out = 0; VGA_B_out = 0;
+      end
+      else if (VGA_Y >= picker_y + breedte_picker - breedte_kader_picker && VGA_Y < picker_y + breedte_picker
+                && VGA_X >= picker_x && VGA_X < picker_x + breedte_picker) begin
+        VGA_R_out = 0; VGA_G_out = 0; VGA_B_out = 0;
+      end else begin
+        //tekenen camerabeeld/achergrond
+        if (!KEY[1]) begin
+          VGA_R_out <= red_img;
+          VGA_G_out <= green_img;
+          VGA_B_out <= blue_img;
+        end else begin
+          VGA_R_out <= vga_r10[9:2];
+          VGA_G_out <= vga_g10[9:2];
+          VGA_B_out <= vga_b10[9:2];
+        end
+      end
+
+      //move picker
+      if (!KEY[3] && move_picker_pulse) begin // picker naar onder laten bewegen
+        move_picker_pulse <= 0;
+        if (picker_y >= 479) begin
+          picker_y = 0;
+        end else begin
+          picker_y = picker_y + 1;
+        end
+      end else if (!KEY[2] && move_picker_pulse) begin // picker naar rechts laten bewegen
+        move_picker_pulse <= 0;
+        if (picker_x >= 639) begin
+          picker_x = 0;
+        end else begin
+          picker_x = picker_x + 1;
+        end
+      end else if (!KEY[1]) begin // kleur in picker selecteren
+        if (VGA_X == picker_x && VGA_Y == picker_y) begin
+          if (SW[1]) begin // switchen tussen donkere of lichte kleur
+            d_r = mRed; d_g = mGreen; d_b = mBlue;
+          end else begin
+            l_r = mRed; l_g = mGreen; l_b = mBlue;
+          end
+        end
+      end
+    end else begin
+      //tekenen camerabeeld/achergrond
+      if (!KEY[1]) begin
+        VGA_R_out <= red_img;
+        VGA_G_out <= green_img;
+        VGA_B_out <= blue_img;
+      end else begin
+        VGA_R_out <= vga_r10[9:2];
+        VGA_G_out <= vga_g10[9:2];
+        VGA_B_out <= vga_b10[9:2];
+      end
+    end
+  end
+end
+
+/**always @ ( * ) begin
   if (!KEY[3]) begin
     if (SW[8]) begin
       desired_Y = SW[7:0];
@@ -449,7 +541,8 @@ always @ ( * ) begin
     VGA_G_out = green_img;
     VGA_B_out = blue_img;
   end else begin
-    if(mY <= desired_Y & mCb <= desired_CB & mCr <= desired_CB) begin
+    if(mRed >= desired_Y & mRed < desired_Y + 10 & mBlue == desired_CB & mBlue < desired_CB + 20  & mGreen >= desired_CR & mGreen < desired_CR + 20) begin
+
       VGA_R_out = vga_r10[9:2];
       VGA_G_out = vga_g10[9:2];
       VGA_B_out = vga_b10[9:2];
@@ -459,7 +552,8 @@ always @ ( * ) begin
       VGA_B_out = 20;
     end
   end
-end
+end */
+
 assign VGA_R = VGA_R_out;
 assign VGA_G = VGA_G_out;
 assign VGA_B = VGA_B_out;
