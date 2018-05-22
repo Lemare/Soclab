@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at DE1_SoC_TV.v(444): always construct contains both blocking and non-blocking assignments File: Y:/Documents/greenscreen/vanpj/DE1_SoC_TV.v Line: 444

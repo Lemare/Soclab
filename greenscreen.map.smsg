@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at DE1_SoC_TV.v(438): always construct contains both blocking and non-blocking assignments File: E:/Pieter-Jan Buntinx/OneDrive - Universiteit Hasselt/Documents/School/3 ABA IIW ELO-ICT/SOCOE/Project Soclab/DE1_SoC_TV.v Line: 438
+Warning (10268): Verilog HDL information at DE1_SoC_TV.v(438): always construct contains both blocking and non-blocking assignments File: Y:/Documents/greenscreen/DE1_SoC_TV.v Line: 438
